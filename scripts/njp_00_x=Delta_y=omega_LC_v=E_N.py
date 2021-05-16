@@ -10,7 +10,7 @@ from qom.ui import init_log
 # add path to local libraries
 sys.path.append(os.path.abspath(os.path.join('..', 'entan_lc_mod')))
 # import system
-from systems.LCNJP import LCNJP
+from systems.NJP00 import NJP00
 
 # all parameters
 params = {
@@ -66,7 +66,7 @@ params = {
 init_log()
 
 # initialize system
-system = LCNJP(params['system'])
+system = NJP00(params['system'])
 
 # function to calculate entanglement
 def func_measure(system_params, val, logger, results):

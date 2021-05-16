@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
  
-"""Class to simulate the OEM system in New J. Phys. 22, 063041."""
+"""Class to simulate the OEM system in New J. Phys. **22**, 063041 (2020)."""
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2020-05-14'
-__updated__ = '2021-05-14'
+__updated__ = '2021-05-15'
 
 # dependencies
 import numpy as np
@@ -14,8 +14,8 @@ import scipy.constants as sc
 # qom modules
 from qom.systems import SODMSystem
 
-class LCNJP(SODMSystem):
-    """Class to simulate the OEM system in New J. Phys. 22, 063041.
+class NJP00(SODMSystem):
+    """Class to simulate the OEM system in New J. Phys. **22**, 063041 (2020).
 
     Parameters
     ----------
@@ -24,13 +24,13 @@ class LCNJP(SODMSystem):
     """
 
     def __init__(self, params):
-        """Class constructor for LCNJP."""
+        """Class constructor for NJP00."""
         
         # initialize super class
         super().__init__(params)
 
         # set attributes
-        self.code = 'lc_njp'
+        self.code = 'njp_00'
         self.name = 'OEM System in NJP 22, 063041'  
         # default parameters
         self.params = {
