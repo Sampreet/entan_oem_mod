@@ -3,6 +3,7 @@
 ## About the Work
 
 We investigate the dynamics of quantum entanglement in an optoelectromechanical system consisting of an optical cavity and an LC circuit sharing a common mechanical membrane.
+The cavity and circuit are driven by modulated lasers and voltages respectively.
 
 ## Related Works
 
@@ -10,10 +11,10 @@ We investigate the dynamics of quantum entanglement in an optoelectromechanical 
 
 > New J. Phys. **22**, 063041 (2020)
 
-Author | Affiliation
------------- | -------------
-Jie Li | Delft University of Technology, 2628CJ Delft, The Netherlands
-Simon Groblacher | Delft University of Technology, 2628CJ Delft, The Netherlands
+Author              | Affiliation
+---                 | ---
+Jie Li              | Delft University of Technology, 2628CJ Delft, The Netherlands
+Simon Groblacher    | Delft University of Technology, 2628CJ Delft, The Netherlands
 
 #### Objectives
 * Entangling a massive mechanical oscillator to a macroscopic low-frequency LC circuit.
@@ -36,10 +37,10 @@ Simon Groblacher | Delft University of Technology, 2628CJ Delft, The Netherlands
 
 > Phys. Rev. Lett. **103**, 213603 (2009)
 
-Author | Affiliation
------------- | -------------
-A. Mari | Institute of Physics and Astronomy, Univerity of Potsdam, D-14476 Postdam, Germany
-J. Eisert | Institute of Advanced Study Berlin, D-14193 Berlin, Germany
+Author      | Affiliation
+---         | ---
+A. Mari     | Institute of Physics and Astronomy, Univerity of Potsdam, D-14476 Postdam, Germany
+J. Eisert   | Institute of Advanced Study Berlin, D-14193 Berlin, Germany
 
 #### Objectives
 * Modulated entanglement dynamics between optics and mechanics.

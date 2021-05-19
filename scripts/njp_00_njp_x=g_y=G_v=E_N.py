@@ -73,7 +73,7 @@ def func_measure(system_params, val, logger, results):
     # update parameters
     system.params = system_params
     # get modes and correlations
-    modes, corrs = system.get_stationary_modes_corrs(None, None, system.get_A, system.get_D)
+    modes, corrs = system.get_modes_corrs_stationary(None, system.get_ivc, system.get_A)
     # get measure
     measure = system.get_measure_stationary(params['solver'], modes, corrs)
     # update results

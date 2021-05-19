@@ -5,7 +5,7 @@
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2020-05-14'
-__updated__ = '2021-05-15'
+__updated__ = '2021-05-19'
 
 # dependencies
 import numpy as np
@@ -46,37 +46,34 @@ class NJP00(SODMSystem):
             'T_LC': params.get('n_LC', 0),
             'T_m': params.get('n_m', 0)
         }
-        # matrices
+        # drift matrix
         self.A = None
-        self.D = None
 
-    def get_A(self, modes):
+    def get_A(self, modes, params):
         """Function to obtain the drift matrix.
+
+        Parameters
+        ----------
+        modes : list
+            Values of the optical and mechancial modes.
+        params : list
+            Constant parameters.
         
         Returns
         -------
         A : list
             Drift matrix.
-        modes : list
-            Values of the optical and mechancial modes.
         """
 
         # extract frequently used variables
-        G_norm          = self.params['G_norm']
-        g_norm          = self.params['g_norm']
-        gamma_LC_norm   = self.params['gamma_LC_norm']
-        gamma_m_norm    = self.params['gamma_m_norm']
-        kappa_norm      = self.params['kappa_norm']
-
-        # get frequencies
-        Delta, omega_m, omega_LC, omega_LC_prime = self.get_frequencies()
-
-        # update variables
-        G       = G_norm * kappa_norm * omega_m
-        g       = g_norm * kappa_norm * omega_m
-        gamma_LC= gamma_LC_norm * omega_LC
-        gamma_m = gamma_m_norm * omega_m
-        kappa   = kappa_norm * omega_m
+        Delta           = params[0]
+        G               = params[1]
+        g               = params[2]
+        gamma_LC        = params[3]
+        gamma_m         = params[4]
+        kappa           = params[5]
+        omega_LC_prime  = params[6]
+        omega_m         = params[7]
 
         # drift matrix
         if self.A is None or np.shape(self.A) != (6, 6):
@@ -100,55 +97,25 @@ class NJP00(SODMSystem):
 
         return self.A
 
-    def get_D(self):
-        """Function to obtain the noise correlation matrix.
+    def get_ivc(self):
+        """Function to obtain the initial values and constants required for the IVP.
         
         Returns
         -------
-        D : list
-            Noise correlation matrix.
-        """
+        iv : list
+            Initial values of variables.
 
-        # extract frequently used variables
-        gamma_LC_norm   = self.params['gamma_LC_norm']
-        gamma_m_norm    = self.params['gamma_m_norm']
-        kappa_norm      = self.params['kappa_norm']
-        T_LC            = self.params['T_LC']
-        T_m             = self.params['T_m']
-
-        # get frequencies
-        _, omega_m, omega_LC, _ = self.get_frequencies()
-
-        # update decays
-        gamma_LC= gamma_LC_norm * omega_LC
-        gamma_m = gamma_m_norm * omega_m
-        kappa   = kappa_norm * omega_m
-        n_LC    = sc.k * T_LC / sc.hbar / omega_LC
-        n_m     = sc.k * T_m / sc.hbar / omega_m
-
-        # noise correlation matrix
-        if self.D is None or np.shape(self.D) != (6, 6):
-            self.D = np.zeros([6, 6], dtype=np.float_)
-        self.D[0][0] = kappa
-        self.D[1][1] = kappa
-        self.D[3][3] = gamma_m * (2 * n_m + 1)
-        self.D[5][5] = gamma_LC * (2 * n_LC + 1)
-
-        return self.D
-
-    def get_frequencies(self):
-        """Function to obtain the frequencies.
-        
-        Returns
-        -------
-        Delta : float
-            Effective cavity-laser detuning.
-        omega_m : float
-            Mechanical frequency.
-        omega_LC : float
-            LC frequency.
-        omega_LC_prime : float
-            Effective LC frequency.
+        c : list
+            Constant parameters.
+            First (4 * 3^2) elements contain the noise matrix.
+            Next element contains the laser detuning.
+            Next element contains the effective LC coupling strength.
+            Next element contains the effective OM coupling strength.
+            Next element contains the LC decay rate.
+            Next element contains the mechanical decay rate.
+            Next element contains the optical decay rate.
+            Next element contains the modified LC frequency.
+            Next element contains the mechanical frequency.
         """
         
         # extract frequently used variables
@@ -156,6 +123,13 @@ class NJP00(SODMSystem):
         Delta_type      = self.params['Delta_type']
         omega_LC_norm   = self.params['omega_LC_norm']
         omega_m         = self.params['omega_m']
+        G_norm          = self.params['G_norm']
+        g_norm          = self.params['g_norm']
+        gamma_LC_norm   = self.params['gamma_LC_norm']
+        gamma_m_norm    = self.params['gamma_m_norm']
+        kappa_norm      = self.params['kappa_norm']
+        T_LC            = self.params['T_LC']
+        T_m             = self.params['T_m']
 
         # effective cavity-laser detuning
         if Delta_type == 'relative':
@@ -166,5 +140,34 @@ class NJP00(SODMSystem):
         omega_LC = omega_LC_norm * omega_m
         # effective LC frequency
         omega_LC_prime = omega_LC
-            
-        return Delta, omega_m, omega_LC, omega_LC_prime
+
+        # update variables
+        G       = G_norm * kappa_norm * omega_m
+        g       = g_norm * kappa_norm * omega_m
+        gamma_LC= gamma_LC_norm * omega_LC
+        gamma_m = gamma_m_norm * omega_m
+        kappa   = kappa_norm * omega_m
+        n_LC    = sc.k * T_LC / sc.hbar / omega_LC
+        n_m     = sc.k * T_m / sc.hbar / omega_m
+
+        # noise matrix
+        D = np.zeros([6, 6], dtype=np.float_)
+        D[0][0] = kappa
+        D[1][1] = kappa
+        D[3][3] = gamma_m * (2 * n_m + 1)
+        D[5][5] = gamma_LC * (2 * n_LC + 1)
+        
+        # constant parameters
+        params = [Delta] + \
+            [G] + \
+            [g] + \
+            [gamma_LC] + \
+            [gamma_m] + \
+            [kappa] + \
+            [omega_LC_prime] + \
+            [omega_m]
+
+        # all constants
+        c = D.flatten().tolist() + params
+
+        return None, c

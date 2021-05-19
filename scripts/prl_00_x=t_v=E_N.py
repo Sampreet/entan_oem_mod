@@ -60,10 +60,10 @@ system = PRL00(params['system'])
 
 # without modulation
 system.params['P_1'] = 0.0
-M_0 = system.get_measure_dynamics(params['solver'], system.ode_func, system.ivc_func)
+M_0 = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 # with modulation
 system.params['P_1'] = 2e-3
-M_1 = system.get_measure_dynamics(params['solver'], system.ode_func, system.ivc_func)
+M_1 = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # plotter
 t_min = params['solver']['range_min']
