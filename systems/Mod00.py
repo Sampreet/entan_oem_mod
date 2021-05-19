@@ -14,7 +14,7 @@ import scipy.constants as sc
 # qom modules
 from qom.systems import SODMSystem
 
-class Sys00(SODMSystem):
+class Mod00(SODMSystem):
     """Class to simulate an OEM system driven by modulated lasers and voltages.
 
     Parameters
@@ -24,13 +24,13 @@ class Sys00(SODMSystem):
     """
 
     def __init__(self, params):
-        """Class constructor for Sys00."""
+        """Class constructor for Mod00."""
         
         # initialize super class
         super().__init__(params)
 
         # set attributes
-        self.code = 'sys_00'
+        self.code = 'mod_00'
         self.name = 'Modulated OEM System'
         # default parameters
         self.params = {
@@ -192,7 +192,7 @@ class Sys00(SODMSystem):
 
         return iv, c
 
-    def get_rates_modes(self, modes, params, t):
+    def get_mode_rates(self, modes, params, t):
         """Function to obtain the rates of the optical and mechanical modes.
 
         Parameters

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2021/05/19 - 01 - Updated Repository
+> Toolbox version 0.7.1
+* Updated and renamed system `Sys00` to `Mod00` and fixed `__init__`.
+* Renamed repository to `entan_oem_mod`.
+
 ## 2021/05/19 - 00 - Initialized System
 > Toolbox version 0.7.1
 * Updated systems for `NJP00` and `PRL00` and updated scripts.
