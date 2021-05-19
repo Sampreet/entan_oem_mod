@@ -161,14 +161,17 @@ class PRL00(SOSMSystem):
         tau = 2 * np.pi / Omega
  
         # initial mode values as 1D list
-        u_0 = np.zeros(2, dtype=np.complex_).tolist()
+        modes_0 = np.zeros(2, dtype=np.complex_).tolist()
 
         # initial quadrature correlations
-        V_0 = np.zeros([4, 4], dtype=np.float_)
-        V_0[0][0] = 1/2 
-        V_0[1][1] = 1/2
-        V_0[2][2] = (n_th + 1/2)
-        V_0[3][3] = (n_th + 1/2)
+        corrs_0 = np.zeros([4, 4], dtype=np.float_)
+        corrs_0[0][0] = 1/2 
+        corrs_0[1][1] = 1/2
+        corrs_0[2][2] = (n_th + 1/2)
+        corrs_0[3][3] = (n_th + 1/2)
+
+        # convert to 1D list and concatenate all variables
+        iv = modes_0 + [np.complex(element) for element in corrs_0.flatten()]
 
         # noise correlation matrix
         D = np.zeros([4, 4], dtype=np.float_)
@@ -177,9 +180,6 @@ class PRL00(SOSMSystem):
         D[1][1] = kappa
         # mechanical mode
         D[3][3] = gamma_m * (2 * n_th + 1) 
-
-        # convert to 1D list and concatenate all variables
-        iv = u_0 + [np.complex(element) for element in V_0.flatten()]
         
         # constant parameters
         params = [Delta_0] + \

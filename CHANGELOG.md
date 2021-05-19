@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021/05/19 - 02 - Added Scripts
+> Toolbox version 0.7.1
+* Added script for entanglement for `Mod00`.
+* Minor fixes to system `Mod00` and `PRL00`.
+* Minor fixes to scripts.
+
 ## 2021/05/19 - 01 - Updated Repository
 > Toolbox version 0.7.1
 * Updated and renamed system `Sys00` to `Mod00` and fixed `__init__`.

@@ -9,7 +9,6 @@ __updated__ = '2021-05-19'
 
 # dependencies
 import numpy as np
-import scipy.constants as sc
 
 # qom modules
 from qom.systems import SODMSystem
@@ -34,17 +33,17 @@ class Mod00(SODMSystem):
         self.name = 'Modulated OEM System'
         # default parameters
         self.params = {
-            'Delta_0': params.get('Delta_0', 1),
-            'E_0': params.get('E_0', 200),
-            'E_1': params.get('E_1', 2),
+            'Delta_0': params.get('Delta_0', 1.0),
+            'E_0': params.get('E_0', 200.0),
+            'E_1': params.get('E_1', 2.0),
             'gammas': params.get('gammas', [0.005, 0.005]),
             'gs': params.get('gs', [0.005, 0.005]),
             'kappa': params.get('kappa', 0.15),
             'n_ths': params.get('n_ths', [0, 0]),
-            'Omegas': params.get('Omegas', [2, 2]),
-            'omegas': params.get('omegas', [1, 1]),
-            'V_0': params.get('V_0', 100),
-            'V_1': params.get('V_1', 1)
+            'Omegas': params.get('Omegas', [2.0, 2.0]),
+            'omegas': params.get('omegas', [1.0, 1.0]),
+            'V_0': params.get('V_0', 100.0),
+            'V_1': params.get('V_1', 1.0)
         }
         # drift matrix
         self.A = None
@@ -151,19 +150,19 @@ class Mod00(SODMSystem):
         V_1     = self.params['V_1']
  
         # initial mode values as 1D list
-        u_0 = np.zeros(3, dtype=np.complex_).tolist()
+        modes_0 = np.zeros(3, dtype=np.complex_).tolist()
 
         # initial quadrature correlations
-        V_0 = np.zeros([6, 6], dtype=np.float_)
-        V_0[0][0] = 1/2 
-        V_0[1][1] = 1/2
-        V_0[2][2] = (n_ths[0] + 1/2)
-        V_0[3][3] = (n_ths[0] + 1/2)
-        V_0[4][4] = (n_ths[1] + 1/2)
-        V_0[5][5] = (n_ths[1] + 1/2)
+        corrs_0 = np.zeros([6, 6], dtype=np.float_)
+        corrs_0[0][0] = 1/2 
+        corrs_0[1][1] = 1/2
+        corrs_0[2][2] = (n_ths[0] + 1/2)
+        corrs_0[3][3] = (n_ths[0] + 1/2)
+        corrs_0[4][4] = (n_ths[1] + 1/2)
+        corrs_0[5][5] = (n_ths[1] + 1/2)
 
         # convert to 1D list and concatenate all variables
-        iv = u_0 + [np.complex(element) for element in V_0.flatten()]
+        iv = modes_0 + [np.complex(element) for element in corrs_0.flatten()]
 
         # noise correlation matrix
         D = np.zeros([6, 6], dtype=np.float_)

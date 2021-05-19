@@ -8,7 +8,7 @@ from qom.loopers import XYLooper
 from qom.ui import init_log
 
 # add path to local libraries
-sys.path.append(os.path.abspath(os.path.join('..', 'entan_lc_mod')))
+sys.path.append(os.path.abspath(os.path.join('..', 'entan_oem_mod')))
 # import system
 from systems.NJP00 import NJP00
 
