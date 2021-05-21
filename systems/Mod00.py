@@ -5,7 +5,7 @@
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2020-05-18'
-__updated__ = '2021-05-19'
+__updated__ = '2021-05-20'
 
 # dependencies
 import numpy as np
@@ -34,16 +34,14 @@ class Mod00(SODMSystem):
         # default parameters
         self.params = {
             'Delta_0': params.get('Delta_0', 1.0),
-            'E_0': params.get('E_0', 200.0),
-            'E_1': params.get('E_1', 2.0),
+            'Es': params.get('Es', [25.0, 2.5]),
             'gammas': params.get('gammas', [0.005, 0.005]),
             'gs': params.get('gs', [0.005, 0.005]),
             'kappa': params.get('kappa', 0.15),
             'n_ths': params.get('n_ths', [0, 0]),
             'Omegas': params.get('Omegas', [2.0, 2.0]),
             'omegas': params.get('omegas', [1.0, 1.0]),
-            'V_0': params.get('V_0', 100.0),
-            'V_1': params.get('V_1', 1.0)
+            'Vs': params.get('Vs', [10.0, 1.0])
         }
         # drift matrix
         self.A = None
@@ -138,16 +136,14 @@ class Mod00(SODMSystem):
 
         # extract frequently used variables
         Delta_0 = self.params['Delta_0']
-        E_0     = self.params['E_0']
-        E_1     = self.params['E_1']
+        Es      = self.params['Es']
         gammas  = self.params['gammas']
         gs      = self.params['gs']
         kappa   = self.params['kappa']
         n_ths   = self.params['n_ths']
         Omegas  = self.params['Omegas']
         omegas  = self.params['omegas']
-        V_0     = self.params['V_0']
-        V_1     = self.params['V_1']
+        Vs      = self.params['Vs']
  
         # initial mode values as 1D list
         modes_0 = np.zeros(3, dtype=np.complex_).tolist()
@@ -178,13 +174,13 @@ class Mod00(SODMSystem):
         
         # constant parameters
         params = [Delta_0] + \
-            [E_0, E_1] + \
+            [Es[0], Es[1]] + \
             gammas + \
             gs + \
             [kappa] + \
             Omegas + \
             omegas + \
-            [V_0, V_1]
+            [Vs[0], Vs[1]]
 
         # all constants
         c = D.flatten().tolist() + params
@@ -211,15 +207,13 @@ class Mod00(SODMSystem):
 
         # extract frequently used variables
         Delta_0 = params[0]
-        E_0     = params[1]
-        E_1     = params[2]
+        Es     = [params[1], params[2]]
         gammas  = [params[3], params[4]]
         gs      = [params[5], params[6]]
         kappa   = params[7]
         Omegas  = [params[8], params[9]]
         omegas  = [params[10], params[11]]
-        V_0     = params[12]
-        V_1     = params[13]
+        Vs      = [params[12], params[13]]
         alpha   = modes[0]
         betas   = [modes[1], modes[2]]
 
@@ -228,11 +222,11 @@ class Mod00(SODMSystem):
 
         # calculate rates
         # optical mode
-        dalpha_dt = - (kappa + 1j * Delta) * alpha + E_0 + E_1 * np.cos(Omegas[0] * t)
+        dalpha_dt = - (kappa + 1j * Delta) * alpha + Es[0] + Es[1] * np.cos(Omegas[0] * t)
         # mechanical mode
         dbeta_0_dt = 1j * gs[0] * np.conjugate(alpha) * alpha - (gammas[0] + 1j * omegas[0]) * betas[0] - 4j * gs[1] * np.real(betas[1])**2
         # circuit mode
-        dbeta_1_dt = - 8j * gs[1] * np.real(betas[0]) * np.real(betas[1]) - (gammas[1] + 1j * omegas[1]) * betas[1] + 1j * (V_0 + V_1 * np.cos(Omegas[1] * t))
+        dbeta_1_dt = - 8j * gs[1] * np.real(betas[0]) * np.real(betas[1]) - (gammas[1] + 1j * omegas[1]) * betas[1] + 1j * (Vs[0] + Vs[1] * np.cos(Omegas[1] * t))
 
         # arrange rates
         mode_rates = [dalpha_dt, dbeta_0_dt, dbeta_1_dt]

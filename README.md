@@ -1,5 +1,12 @@
 # Quantum Entanglement in a Modulated Optoelectromechanical System
 
+Author                  | Affiliation
+---                     | ---
+Sampreet Kalita         | Indian Institute of Technology Guwahati, Guwahati-781039, India
+Subhadeep Chakraborty   | ICFAI University Tripura, Tripura-799210, India
+Saumya Amit Shah        | Indian Institute of Technology Guwahati, Guwahati-781039, India
+Amarendra Kumar Sarma   | Indian Institute of Technology Guwahati, Guwahati-781039, India
+
 ## About the Work
 
 We investigate the dynamics of quantum entanglement in an optoelectromechanical system consisting of an optical cavity and an LC circuit sharing a common mechanical membrane.
@@ -73,6 +80,7 @@ ROOT_DIR/
 │   └───...
 │
 ├───.gitignore
+├───CHANGELOG.md
 ├───GUI.py
 └───README.md
 ```

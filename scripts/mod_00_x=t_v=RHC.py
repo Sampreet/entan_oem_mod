@@ -19,11 +19,7 @@ params = {
         'cache': True,
         'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/sys_00/0.0_1000.0_10001',
         'method': 'ode',
-        'measure_type': 'qcm',
-        'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
-        'range_min': 9371,
+        'range_min': 9999,
         'range_max': 10001,
         't_min': 0,
         't_max': 1000,
@@ -33,7 +29,7 @@ params = {
         'Delta_0': 1.0,
         'Es': [25.0, 2.5], 
         'gammas': [0.005, 0.005],
-        'gs': [0.005, 0.005],
+        'gs': [0.005, 0.0],
         'kappa': 0.15,
         'n_ths': [0, 0],
         'Omegas': [2.0, 1.0],
@@ -56,13 +52,13 @@ init_log()
 # initialize system
 system = Mod00(params['system'])
 
-# get entanglement
-M, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+# get modes
+Counts, T = system.get_rhc_count_dynamics(params['solver'], system.ode_func, system.get_ivc, system.get_A)
 
 # plotter
 axes = {
     'X': T
 }
 plotter = MPLPlotter(axes, params['plotter'])
-plotter.update(xs=T, vs=M)
+plotter.update(xs=T, vs=Counts)
 plotter.show(True)

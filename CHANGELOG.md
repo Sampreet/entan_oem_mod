@@ -1,5 +1,12 @@
 # Changelog
 
+## 2021/05/21 - 00 - Added RHC Scripts
+> Toolbox version 0.7.2
+* Added script for RHC counts for `Mod00`.
+* Updated parameters for `Mod00`.
+* Updated scripts for all models.
+* Updated `README`. 
+
 ## 2021/05/19 - 02 - Added Scripts
 > Toolbox version 0.7.1
 * Added script for entanglement for `Mod00`.

@@ -60,16 +60,12 @@ system = PRL00(params['system'])
 
 # without modulation
 system.params['P_1'] = 0.0
-M_0 = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 # with modulation
 system.params['P_1'] = 2e-3
-M_1 = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # plotter
-t_min = params['solver']['range_min']
-t_max = params['solver']['range_max'] - 1
-t_ss = (params['solver']['t_dim'] - 1) / params['solver']['t_max']
-T = np.linspace(t_min / t_ss, t_max / t_ss, t_max - t_min + 1).tolist()
 axes = {
     'X': T,
     'Y': {
