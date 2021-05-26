@@ -20,19 +20,19 @@ params = {
             'idx': 0,
             'min': 0.000,
             'max': 0.005,
-            'dim': 51
+            'dim': 11
         },
         'Y': {
             'var': 'gs',
             'idx': 1,
             'min': 0.000,
             'max': 0.005,
-            'dim': 51
+            'dim': 11
         }
     },
     'solver': {
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/sys_00/0.0_1000.0_10001',
+        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'range_min': 9999,
         'range_max': 10001,
         't_min': 0,
@@ -46,7 +46,7 @@ params = {
         'gs': [0.005, 0.005],
         'kappa': 0.15,
         'n_ths': [0, 0],
-        'Omegas': [2.0, 1.0],
+        'Omegas': [1.0, 1.0],
         'omegas': [1.0, 1.0],
         'Vs': [10.0, 1.0]
     },
@@ -62,8 +62,9 @@ params = {
         'y_ticks': [0.000, 0.001, 0.002, 0.003, 0.004, 0.005],
         'show_cbar': True,
         'cbar_position': 'top',
-        'cbar_title': '$Counts$',
-        'cbar_ticks': [0.0, 0.5, 1.0]
+        'cbar_title': 'Stability',
+        'cbar_ticks': [0, 1],
+        'cbar_tick_labels': ['Stable', 'Unstable']
     }
 }
 
@@ -80,9 +81,9 @@ def func_stability(system_params, val, logger, results):
     # get RHC counts
     Counts, _ = system.get_rhc_count_dynamics(params['solver'], system.ode_func, system.get_ivc, system.get_A)
     # check for stability
-    stable = 1
+    stable = 0
     if np.mean(Counts) != 0.0:
-        stable = 0
+        stable = 1
     # update results
     results.append((val, stable))
 

@@ -1,5 +1,4 @@
 # dependencies
-import numpy as np
 import os 
 import sys
 
@@ -17,7 +16,7 @@ params = {
     'solver': {
         'show_progress': True,
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/sys_00/0.0_1000.0_10001',
+        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'method': 'ode',
         'measure_type': 'qcm',
         'qcm_type': 'entan',
@@ -36,17 +35,22 @@ params = {
         'gs': [0.005, 0.005],
         'kappa': 0.15,
         'n_ths': [0, 0],
-        'Omegas': [2.0, 1.0],
+        'Omegas': [1.16, 1.14],
         'omegas': [1.0, 1.0],
         'Vs': [10.0, 1.0]
     },
     'plotter': {
-        'type': 'line',
+        'type': 'lines',
+        'show_legend': True,
+        'title': '$\\Omega_{E} = 1.16, \\Omega_{V} = 1.14$',
         'x_label': '$\\omega_{0} t$',
-        'y_name': '$P_{\\pm 1}$',
-        'y_unit': '$\\mathrm{mW}$',
-        'y_colors': ['b', 'g'],
-        'v_label': '$E_{N}$'
+        'x_bound': 'both',
+        'x_ticks': [960, 970, 980, 990, 1000],
+        'y_legend': ['$E_{1} = 0.0, V_{1} = 0.0$', '$E_{1} = 2.5, V_{1} = 1.0$'],
+        'y_colors': ['b', 'r'],
+        'v_label': '$E_{N}$',
+        'v_bound': 'both',
+        'v_ticks': [0.0, 0.5, 1.0]
     }
 }
 
@@ -56,13 +60,24 @@ init_log()
 # initialize system
 system = Mod00(params['system'])
 
-# get entanglement
-M, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+# get entanglement without modulation
+system.params['Es'][1] = 0.0
+system.params['Vs'][1] = 0.0
+M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+
+# get entanglement with modulation
+system.params['Es'][1] = 2.5
+system.params['Vs'][1] = 1.0
+M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # plotter
 axes = {
-    'X': T
+    'X': T,
+    'Y': {
+        'var': 'Es',
+        'val': [0, 1]
+    }
 }
 plotter = MPLPlotter(axes, params['plotter'])
-plotter.update(xs=T, vs=M)
+plotter.update(xs=[T, T], vs=[M_0, M_1])
 plotter.show(True)

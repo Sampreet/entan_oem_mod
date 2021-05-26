@@ -1,5 +1,4 @@
 # dependencies
-import numpy as np
 import os 
 import sys
 
@@ -17,9 +16,9 @@ params = {
     'solver': {
         'show_progress': True,
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/sys_00/0.0_1000.0_10001',
+        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'method': 'ode',
-        'range_min': 9999,
+        'range_min': 9371,
         'range_max': 10001,
         't_min': 0,
         't_max': 1000,
@@ -29,20 +28,21 @@ params = {
         'Delta_0': 1.0,
         'Es': [25.0, 2.5], 
         'gammas': [0.005, 0.005],
-        'gs': [0.005, 0.0],
+        'gs': [0.005, 0.005],
         'kappa': 0.15,
         'n_ths': [0, 0],
-        'Omegas': [2.0, 1.0],
+        'Omegas': [1.2, 1.2],
         'omegas': [1.0, 1.0],
         'Vs': [10.0, 1.0]
     },
     'plotter': {
         'type': 'line',
         'x_label': '$\\omega_{0} t$',
-        'y_name': '$P_{\\pm 1}$',
-        'y_unit': '$\\mathrm{mW}$',
-        'y_colors': ['b', 'g'],
-        'v_label': '$E_{N}$'
+        'x_bound': 'both',
+        'x_ticks': [960, 970, 980, 990, 1000],
+        'v_label': 'Counts',
+        'v_bound': 'both',
+        'v_ticks': [0, 1, 2, 3]
     }
 }
 
