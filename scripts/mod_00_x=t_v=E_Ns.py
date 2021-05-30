@@ -19,10 +19,10 @@ params = {
         'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'method': 'ode',
         'measure_type': 'qcm',
-        'qcm_type': 'entan',
+        'qcm_type': 'sync_complete',
         'idx_mode_i': 1,
         'idx_mode_j': 2,
-        'range_min': 9371,
+        'range_min': 0,
         'range_max': 10001,
         't_min': 0,
         't_max': 1000,
@@ -30,27 +30,23 @@ params = {
     },
     'system': {
         'Delta_0': 1.0,
-        'Es': [25.0, 2.5], 
-        'gammas': [0.005, 0.005],
-        'gs': [0.005, 0.005],
+        'Es': [30.0, 1.0], 
+        'gammas': [5e-3, 5e-2],
+        'gs': [5e-3, 5e-12],
         'kappa': 0.15,
         'n_ths': [0, 0],
-        'Omegas': [1.16, 1.14],
+        'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        'Vs': [10.0, 1.0]
+        'Vs': [15.0, 1.0]
     },
     'plotter': {
         'type': 'lines',
         'show_legend': True,
         'title': '$\\Omega_{E} = 1.16, \\Omega_{V} = 1.14$',
         'x_label': '$\\omega_{0} t$',
-        'x_bound': 'both',
-        'x_ticks': [960, 970, 980, 990, 1000],
         'y_legend': ['$E_{1} = 0.0, V_{1} = 0.0$', '$E_{1} = 2.5, V_{1} = 1.0$'],
         'y_colors': ['b', 'r'],
-        'v_label': '$E_{N}$',
-        'v_bound': 'both',
-        'v_ticks': [0.0, 0.5, 1.0]
+        'v_label': '$E_{N}$'
     }
 }
 

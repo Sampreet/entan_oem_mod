@@ -18,22 +18,22 @@ params = {
         'cache': True,
         'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'method': 'ode',
-        'range_min': 9371,
-        'range_max': 10001,
+        'range_min': 371,
+        'range_max': 1001,
         't_min': 0,
-        't_max': 1000,
-        't_dim': 10001
+        't_max': 100,
+        't_dim': 1001
     },
     'system': {
         'Delta_0': 1.0,
-        'Es': [25.0, 2.5], 
-        'gammas': [0.005, 0.005],
-        'gs': [0.005, 0.005],
+        'Es': [30.0, 1.0], 
+        'gammas': [5e-3, 5e-2],
+        'gs': [5e-3, 5e-12],
         'kappa': 0.15,
         'n_ths': [0, 0],
-        'Omegas': [1.2, 1.2],
+        'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        'Vs': [10.0, 1.0]
+        'Vs': [15.0, 1.0]
     },
     'plotter': {
         'type': 'line',

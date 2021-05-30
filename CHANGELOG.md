@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021/05/30 - 00 - Modified Model
+> Toolbox version 0.7.3
+* Modified capacitance sign for `Mod00`.
+* Minor fixes to scripts to update parameters.
+* Updated `README`.
+
 ## 2021/05/26 - 00 - Average Entanglement
 > Toolbox version 0.7.3
 * Added scripts for calculation of average entanglement for `Mod00`.
