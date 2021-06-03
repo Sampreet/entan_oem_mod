@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021/06/03 - 00 - Added Stability Notebook
+> Toolbox version 0.7.3
+* Added notebook for stability analysis for `Mod00`.
+* Removed `NPJ00` and `PRL00` systems and scripts.
+* Updated `README`.
+
 ## 2021/05/30 - 00 - Modified Model
 > Toolbox version 0.7.3
 * Modified capacitance sign for `Mod00`.
