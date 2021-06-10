@@ -5,7 +5,7 @@
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2020-05-18'
-__updated__ = '2021-05-26'
+__updated__ = '2021-06-10'
 
 # dependencies
 import numpy as np
@@ -91,20 +91,18 @@ class Mod00(SODMSystem):
         # mechanical position quadrature
         self.A[2][2] = - gammas[0]
         self.A[2][3] = omegas[0]
-        self.A[2][4] = - 4 * np.imag(G_11)
         # mechanical momentum quadrature
         self.A[3][0] = 2 * np.real(G_0)
         self.A[3][1] = 2 * np.imag(G_0)
         self.A[3][2] = - omegas[0]
         self.A[3][3] = - gammas[0]
-        self.A[3][4] = 4 * np.real(G_11)
+        self.A[3][4] = 4 * G_11
         # LC charge quadrature
-        self.A[4][2] = - 4 * np.imag(G_11)
-        self.A[4][4] = - gammas[1] - 4 * np.imag(G_10)
+        self.A[4][4] = - gammas[1]
         self.A[4][5] = omegas[1]
         # LC flux quadrature
-        self.A[5][2] = 4 * np.real(G_11)
-        self.A[5][4] = - omegas[1] + 4 * np.real(G_10)
+        self.A[5][2] = 4 * G_11
+        self.A[5][4] = - omegas[1] + 4 * G_10
         self.A[5][5] = - gammas[1]
 
         return self.A
@@ -207,7 +205,7 @@ class Mod00(SODMSystem):
 
         # extract frequently used variables
         Delta_0 = params[0]
-        Es     = [params[1], params[2]]
+        Es      = [params[1], params[2]]
         gammas  = [params[3], params[4]]
         gs      = [params[5], params[6]]
         kappa   = params[7]

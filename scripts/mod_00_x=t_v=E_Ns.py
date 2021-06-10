@@ -15,7 +15,7 @@ from systems.Mod00 import Mod00
 params = {
     'solver': {
         'show_progress': True,
-        'cache': True,
+        'cache': False,
         'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'method': 'ode',
         'measure_type': 'qcm',
@@ -29,22 +29,22 @@ params = {
         't_dim': 10001
     },
     'system': {
-        'Delta_0': 1.0,
-        'Es': [30.0, 1.0], 
+        'Delta_0': - 1.0,
+        'Es': [30.0, 0.0], 
         'gammas': [5e-3, 5e-2],
-        'gs': [5e-3, 5e-12],
+        'gs': [5e-3, 5e-6],
         'kappa': 0.15,
         'n_ths': [0, 0],
-        'Omegas': [2.0, 2.0],
+        'Omegas': [1.2, 1.2],
         'omegas': [1.0, 1.0],
-        'Vs': [15.0, 1.0]
+        'Vs': [15.0, 0.0]
     },
     'plotter': {
         'type': 'lines',
         'show_legend': True,
-        'title': '$\\Omega_{E} = 1.16, \\Omega_{V} = 1.14$',
+        'title': '$\\Omega_{E} = 2.0, \\Omega_{V} = 2.0$',
         'x_label': '$\\omega_{0} t$',
-        'y_legend': ['$E_{1} = 0.0, V_{1} = 0.0$', '$E_{1} = 2.5, V_{1} = 1.0$'],
+        'y_legend': ['$E_{1} = 0.0, V_{1} = 0.0$', '$E_{1} = 3.0, V_{1} = 1.5$'],
         'y_colors': ['b', 'r'],
         'v_label': '$E_{N}$'
     }
@@ -62,8 +62,8 @@ system.params['Vs'][1] = 0.0
 M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # get entanglement with modulation
-system.params['Es'][1] = 2.5
-system.params['Vs'][1] = 1.0
+system.params['Es'][1] = 3.0
+system.params['Vs'][1] = 1.5
 M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # plotter

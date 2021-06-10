@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021/06/10 - 00 - Updated README
+> Toolbox version 0.7.5
+* Updated parameters for `mod_00` scripts.
+* Minor fixes to `Mod00` system.
+* Updated `README`.
+
 ## 2021/06/03 - 00 - Added Stability Notebook
 > Toolbox version 0.7.3
 * Added notebook for stability analysis for `Mod00`.
