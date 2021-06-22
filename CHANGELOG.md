@@ -1,5 +1,13 @@
 # Changelog
 
+## 2021/06/22 - 00 - Enhanced Models
+> Toolbox version 0.7.5
+* Added QLE calculation notebook `mod_01_QLEs` for `Mod01`.
+* Updated parameters for `mod_00` scripts.
+* Added `Mod01` system for frequency modulation.
+* Added scripts for `mod_01`.
+* Updated `README`.
+
 ## 2021/06/10 - 00 - Updated README
 > Toolbox version 0.7.5
 * Updated parameters for `mod_00` scripts.

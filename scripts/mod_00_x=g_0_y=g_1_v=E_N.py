@@ -43,15 +43,17 @@ params = {
         't_dim': 10001
     },
     'system': {
+        'A_ls': [50, 0.0],
+        'A_vs': [1e2, 0.0], 
         'Delta_0': 1.0,
-        'Es': [30.0, 1.0], 
         'gammas': [5e-3, 5e-2],
-        'gs': [5e-3, 5e-12],
+        'gs': [5e-3, 5e-4],
         'kappa': 0.15,
         'n_ths': [0, 0],
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        'Vs': [15.0, 1.0]
+        't_mod': 'cos',
+        't_pos': 'bottom'
     },
     'plotter': {
         'type': 'contourf',

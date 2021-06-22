@@ -4,7 +4,7 @@
 """Class to simulate an OEM system driven by modulated lasers and voltages."""
 
 __authors__ = ['Sampreet Kalita']
-__created__ = '2021-05-18'
+__created__ = '2021-06-14'
 __updated__ = '2021-06-22'
 
 # dependencies
@@ -13,8 +13,8 @@ import numpy as np
 # qom modules
 from qom.systems import SODMSystem
 
-class Mod00(SODMSystem):
-    """Class to simulate an OEM system driven by modulated lasers and voltages.
+class Mod01(SODMSystem):
+    """Class to simulate an OEM system driven by modulated lasers and voltages with a modulated frequency.
 
     Parameters
     ----------
@@ -23,32 +23,33 @@ class Mod00(SODMSystem):
     """
 
     def __init__(self, params):
-        """Class constructor for Mod00."""
+        """Class constructor for Mod01."""
         
         # initialize super class
         super().__init__(params)
 
         # set attributes
-        self.code = 'mod_00'
+        self.code = 'mod_01'
         self.name = 'Modulated OEM System'
         # default parameters
         self.params = {
-            'A_ls': params.get('A_ls', [25.0, 2.5]),
-            'A_vs': params.get('A_vs', [10.0, 1.0]),
+            'A_ls': params.get('A_ls', [50.0, 5.0]),
+            'A_vs': params.get('A_vs', [100.0, 10.0]),
             'Delta_0': params.get('Delta_0', 1.0),
             'gammas': params.get('gammas', [5e-3, 5e-1]),
-            'gs': params.get('gs', [5e-3, 5e-6]),
+            'gs': params.get('gs', [5e-3, 5e-4]),
             'kappa': params.get('kappa', 0.15),
             'n_ths': params.get('n_ths', [0, 0]),
             'Omegas': params.get('Omegas', [2.0, 2.0]),
             'omegas': params.get('omegas', [1.0, 1.0]),
+            'thetas': params.get('thetas', [0.1, 2.0]),
             't_mod': params.get('t_mod', 'cos'),
             't_pos': params.get('t_pos', 'top')
         }
         # drift matrix
         self.A = None
 
-    def get_A(self, modes, params):
+    def get_A(self, modes, params, t):
         """Function to obtain the drift matrix.
 
         Parameters
@@ -57,6 +58,8 @@ class Mod00(SODMSystem):
             Values of the optical and mechancial modes.
         params : list
             Constant parameters.
+        t : float
+            Time at which the rates are calculated.
         
         Returns
         -------
@@ -69,8 +72,11 @@ class Mod00(SODMSystem):
         gammas  = [params[5], params[6]]
         gs      = [params[7], params[8]]
         kappa   = params[9]
+        Omegas  = [params[10], params[11]]
         omegas  = [params[12], params[13]]
-        t_pos   = params[15]
+        thetas  = [params[14], params[15]]
+        t_mod   = params[16]
+        t_pos   = params[17]
         alpha   = modes[0]
         betas   = [modes[1], modes[2]]
 
@@ -80,6 +86,11 @@ class Mod00(SODMSystem):
         g_1 = - gs[1] if t_pos == 'bottom' else gs[1]
         G_10 = 2 * g_1 * np.real(betas[0])
         G_11 = 2 * g_1 * np.real(betas[1])
+        func_mod = lambda Theta : {
+            'exp': np.exp(1j * Theta),
+            'cos': np.cos(Theta),
+            'sin': np.sin(Theta)
+        }.get(t_mod, np.cos(Theta))
 
         # initialize drift matrix
         if self.A is None or np.shape(self.A) != (6, 6):
@@ -94,11 +105,11 @@ class Mod00(SODMSystem):
         self.A[1][2] = 2 * np.real(G_0)
         # mechanical position quadrature
         self.A[2][2] = - gammas[0]
-        self.A[2][3] = omegas[0]
+        self.A[2][3] = omegas[0] * (1 + thetas[0] * func_mod(thetas[1] * t))
         # mechanical momentum quadrature
         self.A[3][0] = 2 * np.real(G_0)
         self.A[3][1] = 2 * np.imag(G_0)
-        self.A[3][2] = - omegas[0]
+        self.A[3][2] = - omegas[0] * (1 + thetas[0] * func_mod(thetas[1] * t))
         self.A[3][3] = - gammas[0]
         self.A[3][4] = 4 * G_11
         # LC charge quadrature
@@ -134,6 +145,7 @@ class Mod00(SODMSystem):
             Next element contains the optical decay rate.
             Next 2 elements contain the laser and voltage modulation frequencies.
             Next 2 elements contain the mechanical and LC frequencies.
+            Next element contains the amplitude and frequency of the frequency modulation.
             Next element contains the type of modulation function.
             Next element contains the position of the mechanical element.
         """
@@ -148,6 +160,7 @@ class Mod00(SODMSystem):
         n_ths   = self.params['n_ths']
         Omegas  = self.params['Omegas']
         omegas  = self.params['omegas']
+        thetas  = self.params['thetas']
         t_mod   = self.params['t_mod']
         t_pos   = self.params['t_pos']
  
@@ -187,6 +200,7 @@ class Mod00(SODMSystem):
             [kappa] + \
             Omegas + \
             omegas + \
+            thetas + \
             [t_mod, t_pos]
 
         # all constants
@@ -221,8 +235,9 @@ class Mod00(SODMSystem):
         kappa   = params[9]
         Omegas  = [params[10], params[11]]
         omegas  = [params[12], params[13]]
-        t_mod   = params[14]
-        t_pos   = params[15]
+        thetas  = [params[14], params[15]]
+        t_mod   = params[16]
+        t_pos   = params[17]
         alpha   = modes[0]
         betas   = [modes[1], modes[2]]
 
@@ -239,7 +254,7 @@ class Mod00(SODMSystem):
         # optical mode
         dalpha_dt = - (kappa + 1j * Delta) * alpha + A_ls[0] + A_ls[1] * func_mod(Omegas[0] * t)
         # mechanical mode
-        dbeta_0_dt = 1j * gs[0] * np.conjugate(alpha) * alpha - (gammas[0] + 1j * omegas[0]) * betas[0] + 4j * g_1 * np.real(betas[1])**2
+        dbeta_0_dt = 1j * gs[0] * np.conjugate(alpha) * alpha - (gammas[0] + 1j * omegas[0] * (1 + thetas[0] * func_mod(thetas[1]))) * betas[0] + 4j * g_1 * np.real(betas[1])**2
         # circuit mode
         dbeta_1_dt = 8j * g_1 * np.real(betas[0]) * np.real(betas[1]) - (gammas[1] + 1j * omegas[1]) * betas[1] + 1j * (A_vs[0] + A_vs[1] * func_mod(Omegas[1] * t))
 

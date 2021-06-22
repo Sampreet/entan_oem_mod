@@ -13,8 +13,14 @@ from systems.Mod00 import Mod00
 # all parameters
 params = {
     'looper': {
-        'show_progress': True,
         'X': {
+            'var': 'Omegas',
+            'idx': 0,
+            'min': 1.0,
+            'max': 2.0,
+            'dim': 51
+        },
+        'Y': {
             'var': 'Omegas',
             'idx': 1,
             'min': 1.0,
@@ -50,18 +56,24 @@ params = {
         't_pos': 'bottom'
     },
     'plotter': {
-        'type': 'line',
-        'x_label': '$\\Omega_{v} / \\omega_{0}$',
+        'type': 'contourf',
+        'palette': 'RdBu',
+        'bins': 11,
+        'x_label': '$\\Omega_{l} / \\omega_{0}$',
         'x_bound': 'both',
         'x_ticks': [1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
-        'v_label': '$E_{N}$',
-        'v_bound': 'both',
-        'v_ticks': [0.0, 0.2, 0.4, 0.6]
+        'y_label': '$\\Omega_{v} / \\omega_{1}$',
+        'y_bound': 'both',
+        'y_ticks': [1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+        'show_cbar': True,
+        'cbar_position': 'top',
+        'cbar_title': '$E_{N}$',
+        'cbar_ticks': [0.1, 0.2, 0.3, 0.4]
     }
 }
 
 # get average entanglement
-looper = wrap_looper(Mod00, params, 'measure_average', 'XLooper', 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/E_N_g_0_0.005_g_1_0.005_Omega_l_1.16', True)
+looper = wrap_looper(Mod00, params, 'measure_average', 'XYLooper', 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/E_N_g_0_0.005_g_1_0.005', True)
 
 # calculate thresholds
 print(looper.get_thresholds())

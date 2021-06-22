@@ -16,7 +16,6 @@ params = {
     'solver': {
         'show_progress': True,
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
         'method': 'ode',
         'range_min': 371,
         'range_max': 1001,
@@ -25,15 +24,17 @@ params = {
         't_dim': 1001
     },
     'system': {
-        'Delta_0': - 1.0,
-        'Es': [30.0, 0.0], 
+        'A_ls': [50, 0.0],
+        'A_vs': [1e2, 0.0], 
+        'Delta_0': 1.0,
         'gammas': [5e-3, 5e-2],
-        'gs': [5e-3, 5e-12],
+        'gs': [5e-3, 5e-4],
         'kappa': 0.15,
         'n_ths': [0, 0],
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        'Vs': [15.0, 0.0]
+        't_mod': 'cos',
+        't_pos': 'bottom'
     },
     'plotter': {
         'type': 'line',

@@ -1,4 +1,4 @@
-# Quantum Entanglement in a Modulated Optoelectromechanical System
+# Quantum Entanglement in Modulated Optoelectromechanical Systems
 
 ## About the Work
 
@@ -11,17 +11,21 @@ The following models are studied:
 
 ## Related Works
 
-* D. Vitali, P. Tombesi, M. J. Woolley, A. C. Doherty and G. J. Milburn, *Entangling a Nanomechanical Resonator and a Superconducting Microwave Cavity*, [Phys. Rev. A **76**, 042336](https://doi.org/10.1103/PhysRevA.76.042336) (2007).
+* D. Vitali, P. Tombesi, M. J. Woolley, A. C. Doherty and G. J. Milburn, *Entangling a Nanomechanical Resonator and a Superconducting Microwave Cavity*, [Phys. Rev. A **76**, 042336](https://doi.org/10.1103/PhysRevA.76.042336) (2007)
 
-* A. Mari and J. Eisert, *Gently Modulating Optomechanical Systems*, [Phys. Rev. Lett. **103**, 213603](https://doi.org/10.1103/PhysRevLett.103.213603) (2009).
+* A. Mari and J. Eisert, *Gently Modulating Optomechanical Systems*, [Phys. Rev. Lett. **103**, 213603](https://doi.org/10.1103/PhysRevLett.103.213603) (2009)
 
-* S. Barzanjeh, D. Vitali, P. Tombesi and G. J. Milburn, *Entangling Optical and Microwave Cavity Modes by means of a Nanomechanical Resonator*, [Phys. Rev. A **84**, 042342](https://doi.org/10.1103/PhysRevA.84.042342) (2011).
+* S. Barzanjeh, D. Vitali, P. Tombesi and G. J. Milburn, *Entangling Optical and Microwave Cavity Modes by means of a Nanomechanical Resonator*, [Phys. Rev. A **84**, 042342](https://doi.org/10.1103/PhysRevA.84.042342) (2011)
 
-* R.-X. Chen, L.-T. Shen, Z.-B. Yang, H.-Z. Wu and S.-B. Zheng, *Enhancement of Entanglement in Distant Mechanical Vibrations via Modulation in a Coupled Optomechanical System*, [Phys. Rev. A **89**, 023843](https://link.aps.org/doi/10.1103/PhysRevA.89.023843) (2014).
+* A. Farace and V. Giovannetti, *Enhancing Quantum Effects via Periodic Modulations in Optomechanical Systems*, [Phys. Rev. A **86**, 013820](https://doi.org/10.1103/PhysRevA.86.013820) (2012)
 
-* D. Bothner, S. Yanai, A. Iniguuz-Rabago, M. Yaun, Y. M. Blanter and G. A . Steele, *Cavity Electromechanics with Parametric Mechanical Driving*, [Nat. Commun. **11**, 1589](https://doi.org/10.1038/s41467-020-15389-4) (2020).
+* R.-X. Chen, L.-T. Shen, Z.-B. Yang, H.-Z. Wu and S.-B. Zheng, *Enhancement of Entanglement in Distant Mechanical Vibrations via Modulation in a Coupled Optomechanical System*, [Phys. Rev. A **89**, 023843](https://link.aps.org/doi/10.1103/PhysRevA.89.023843) (2014)
 
-* J. Li and S. Groblacher, *Stationary Quantum Entanglement between a Massive Mechanical Membrane and a Low Frequency LC Circuit*, [New J. Phys. **22**, 063041](https://doi.org/10.1088/1367-2630/ab90d2) (2020).
+* M. Wang, X.-Y. Lu, Y.-D. Wang, J. Q. You and Y. Wu, *Macroscopic Quantum Entanglement in Modulated Optomechanics*, [Phys. Rev. A **94**, 053807](https://doi.org/10.1103/PhysRevA.94.053807) (2016)
+
+* D. Bothner, S. Yanai, A. Iniguuz-Rabago, M. Yaun, Y. M. Blanter and G. A . Steele, *Cavity Electromechanics with Parametric Mechanical Driving*, [Nat. Commun. **11**, 1589](https://doi.org/10.1038/s41467-020-15389-4) (2020)
+
+* J. Li and S. Groblacher, *Stationary Quantum Entanglement between a Massive Mechanical Membrane and a Low Frequency LC Circuit*, [New J. Phys. **22**, 063041](https://doi.org/10.1088/1367-2630/ab90d2) (2020)
 
 * N. Malossi, P. Piergentili, J. Li, E. Serra, R. Natali, G. Di Giuseppe and D. Vitali, *Sympathetic Cooling of a Radio-frequency LC Circuit to its Ground State in an Optoelectromechanical System*, [Phys. Rev. A **103**, 033516](https://link.aps.org/doi/10.1103/PhysRevA.103.0335166) (2021).
 
