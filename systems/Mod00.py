@@ -5,7 +5,7 @@
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2021-05-18'
-__updated__ = '2021-06-22'
+__updated__ = '2021-06-26'
 
 # dependencies
 import numpy as np
@@ -48,7 +48,7 @@ class Mod00(SODMSystem):
         # drift matrix
         self.A = None
 
-    def get_A(self, modes, params):
+    def get_A(self, modes, params, t):
         """Function to obtain the drift matrix.
 
         Parameters

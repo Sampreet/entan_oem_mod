@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021/06/26 - 00 - Updated Notebook
+> Toolbox version 0.7.5
+* Updated notebook on QLEs for `Mod01`.
+* Updated parameters in `mod_01` scripts.
+* Updated systems.
+
 ## 2021/06/22 - 00 - Enhanced Models
 > Toolbox version 0.7.5
 * Added QLE calculation notebook `mod_01_QLEs` for `Mod01`.

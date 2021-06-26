@@ -20,25 +20,25 @@ params = {
         'method': 'ode',
         'measure_type': 'qcm',
         'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
-        'range_min': 9371,
+        'idx_mode_i': 0,
+        'idx_mode_j': 1,
+        'range_min': 0,
         'range_max': 10001,
         't_min': 0,
         't_max': 1000,
         't_dim': 10001
     },
     'system': {
-        'A_ls': [50, 0.0],
-        'A_vs': [1e2, 10.0], 
-        'Delta_0': 1.0,
-        'gammas': [5e-3, 5e-2],
-        'gs': [5e-3, 5e-4],
-        'kappa': 0.15,
+        'A_ls': [2e2, 0.0],
+        'A_vs': [0.0, 0.0], 
+        'Delta_0': - 1.0,
+        'gammas': [1e-6, 1e-4],
+        'gs': [1e-3, 1e-9],
+        'kappa': 0.1,
         'n_ths': [0, 0],
-        'Omegas': [2.0, 2.0],
+        'Omegas': [2.0, 0.0],
         'omegas': [1.0, 1.0],
-        'thetas': [0.1, 2.0],
+        'thetas': [0.1, 0.0],
         't_mod': 'cos',
         't_pos': 'bottom'
     },
@@ -47,11 +47,9 @@ params = {
         'show_legend': True,
         'title': '$\\theta_{1} = 2.0$',
         'x_label': '$\\omega_{0} t$',
-        'x_ticks': [950, 960, 970, 980, 990, 1000],
         'y_legend': ['$\\theta_{0} = 0.0$', '$\\theta_{0} = 0.1$'],
         'y_colors': ['b', 'r'],
-        'v_label': '$E_{N}$',
-        'v_ticks': [0.175, 0.180, 0.185, 0.190]
+        'v_label': '$E_{N}$'
     }
 }
 
@@ -62,13 +60,19 @@ init_log()
 system = Mod01(params['system'])
 
 # get entanglement without modulation
-system.params['A_vs'][1] = 0.0
+system.params['A_vs'][0] = 0.0
+system.params['A_vs'][1] = 1e5
+system.params['Omegas'][1] = 0.0
 system.params['thetas'][0] = 0.0
+system.params['thetas'][1] = 0.0
 M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # get entanglement with modulation
-system.params['A_vs'][1] = 10.0
-system.params['thetas'][0] = 0.1
+system.params['A_vs'][0] = 0.0
+system.params['A_vs'][1] = 1e5
+system.params['Omegas'][1] = 2.0
+system.params['thetas'][0] = 0.0
+system.params['thetas'][1] = 0.0
 M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # plotter

@@ -5,7 +5,7 @@
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2021-06-14'
-__updated__ = '2021-06-22'
+__updated__ = '2021-06-25'
 
 # dependencies
 import numpy as np
@@ -30,7 +30,7 @@ class Mod01(SODMSystem):
 
         # set attributes
         self.code = 'mod_01'
-        self.name = 'Modulated OEM System'
+        self.name = 'Frequency Modulated OEM System'
         # default parameters
         self.params = {
             'A_ls': params.get('A_ls', [50.0, 5.0]),
@@ -91,6 +91,7 @@ class Mod01(SODMSystem):
             'cos': np.cos(Theta),
             'sin': np.sin(Theta)
         }.get(t_mod, np.cos(Theta))
+        omega_0 = omegas[0] * np.sqrt(1 + thetas[0] * func_mod(thetas[1] * t))
 
         # initialize drift matrix
         if self.A is None or np.shape(self.A) != (6, 6):
@@ -105,11 +106,11 @@ class Mod01(SODMSystem):
         self.A[1][2] = 2 * np.real(G_0)
         # mechanical position quadrature
         self.A[2][2] = - gammas[0]
-        self.A[2][3] = omegas[0] * (1 + thetas[0] * func_mod(thetas[1] * t))
+        self.A[2][3] = omega_0
         # mechanical momentum quadrature
         self.A[3][0] = 2 * np.real(G_0)
         self.A[3][1] = 2 * np.imag(G_0)
-        self.A[3][2] = - omegas[0] * (1 + thetas[0] * func_mod(thetas[1] * t))
+        self.A[3][2] = - omega_0
         self.A[3][3] = - gammas[0]
         self.A[3][4] = 4 * G_11
         # LC charge quadrature
@@ -249,14 +250,17 @@ class Mod01(SODMSystem):
             'cos': np.cos(Theta),
             'sin': np.sin(Theta)
         }.get(t_mod, np.cos(Theta))
+        A_l = (A_ls[0] + A_ls[1] * func_mod(Omegas[0] * t))
+        A_v = (A_vs[0] + A_vs[1] * func_mod(Omegas[1] * t))
+        omega_0 = omegas[0] * np.sqrt(1 + thetas[0] * func_mod(thetas[1] * t))
 
         # calculate rates
         # optical mode
-        dalpha_dt = - (kappa + 1j * Delta) * alpha + A_ls[0] + A_ls[1] * func_mod(Omegas[0] * t)
+        dalpha_dt = - (kappa + 1j * Delta) * alpha + A_l
         # mechanical mode
-        dbeta_0_dt = 1j * gs[0] * np.conjugate(alpha) * alpha - (gammas[0] + 1j * omegas[0] * (1 + thetas[0] * func_mod(thetas[1]))) * betas[0] + 4j * g_1 * np.real(betas[1])**2
+        dbeta_0_dt = 1j * gs[0] * np.conjugate(alpha) * alpha - (gammas[0] + 1j * omega_0) * betas[0] + 4j * g_1 * np.real(betas[1])**2
         # circuit mode
-        dbeta_1_dt = 8j * g_1 * np.real(betas[0]) * np.real(betas[1]) - (gammas[1] + 1j * omegas[1]) * betas[1] + 1j * (A_vs[0] + A_vs[1] * func_mod(Omegas[1] * t))
+        dbeta_1_dt = 8j * g_1 * np.real(betas[0]) * np.real(betas[1]) - (gammas[1] + 1j * omegas[1]) * betas[1] + 1j * A_v
 
         # arrange rates
         mode_rates = [dalpha_dt, dbeta_0_dt, dbeta_1_dt]
