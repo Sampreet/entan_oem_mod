@@ -21,6 +21,10 @@ The following models are studied:
 
 * R.-X. Chen, L.-T. Shen, Z.-B. Yang, H.-Z. Wu and S.-B. Zheng, *Enhancement of Entanglement in Distant Mechanical Vibrations via Modulation in a Coupled Optomechanical System*, [Phys. Rev. A **89**, 023843](https://link.aps.org/doi/10.1103/PhysRevA.89.023843) (2014)
 
+* E. A. Sete, H. Eleuch and C. H. Raymond Ooi, *Light-to-matter Entanglement Transfer in Optomechanics*, [J. Opt. Soc. Am. B **31**, 2821](https://doi.org/10.1364/JOSAB.31.002821) (2014)
+
+* S. Huang, *Quantum State Transfer in Cavity Electro-optic Modulators*, [Phys. Rev. A **92**, 043845](https://doi.org/10.1103/PhysRevA.92.043845) (2015)
+
 * M. Wang, X.-Y. Lu, Y.-D. Wang, J. Q. You and Y. Wu, *Macroscopic Quantum Entanglement in Modulated Optomechanics*, [Phys. Rev. A **94**, 053807](https://doi.org/10.1103/PhysRevA.94.053807) (2016)
 
 * D. Bothner, S. Yanai, A. Iniguuz-Rabago, M. Yaun, Y. M. Blanter and G. A . Steele, *Cavity Electromechanics with Parametric Mechanical Driving*, [Nat. Commun. **11**, 1589](https://doi.org/10.1038/s41467-020-15389-4) (2020)

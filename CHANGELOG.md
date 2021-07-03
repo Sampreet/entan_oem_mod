@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021/07/03 - 00 - Added Scripts
+> Toolbox version 0.7.7
+* Added scripts for `mod_01`.
+* Minor updates to systems.
+* Updated `README`.
+
 ## 2021/06/26 - 00 - Updated Notebook
 > Toolbox version 0.7.5
 * Updated notebook on QLEs for `Mod01`.

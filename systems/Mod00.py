@@ -30,7 +30,7 @@ class Mod00(SODMSystem):
 
         # set attributes
         self.code = 'mod_00'
-        self.name = 'Modulated OEM System'
+        self.name = 'Amplitude Modulated OEM System'
         # default parameters
         self.params = {
             'A_ls': params.get('A_ls', [25.0, 2.5]),
@@ -57,6 +57,8 @@ class Mod00(SODMSystem):
             Values of the optical and mechancial modes.
         params : list
             Constant parameters.
+        t : float
+            Time at which the rates are calculated.
         
         Returns
         -------

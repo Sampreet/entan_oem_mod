@@ -20,8 +20,8 @@ params = {
         'method': 'ode',
         'measure_type': 'qcm',
         'qcm_type': 'entan',
-        'idx_mode_i': 0,
-        'idx_mode_j': 1,
+        'idx_mode_i': 1,
+        'idx_mode_j': 2,
         'range_min': 0,
         'range_max': 10001,
         't_min': 0,
@@ -29,27 +29,34 @@ params = {
         't_dim': 10001
     },
     'system': {
-        'A_ls': [2e2, 0.0],
-        'A_vs': [0.0, 0.0], 
-        'Delta_0': - 1.0,
-        'gammas': [1e-6, 1e-4],
-        'gs': [1e-3, 1e-9],
+        'A_ls': [1e2, 0.0],
+        'A_vs': [0.0, 1e4], 
+        'Delta_0': 1.0,
+        'gammas': [1e-3, 1e-2],
+        'gs': [1e-3, 1e-6],
         'kappa': 0.1,
         'n_ths': [0, 0],
-        'Omegas': [2.0, 0.0],
+        'Omegas': [0.0, 0.0],
         'omegas': [1.0, 1.0],
-        'thetas': [0.1, 0.0],
+        'thetas': [0.0, 0.0],
         't_mod': 'cos',
-        't_pos': 'bottom'
+        't_pos': 'top'
     },
     'plotter': {
         'type': 'lines',
         'show_legend': True,
-        'title': '$\\theta_{1} = 2.0$',
+        'palette': 'Reds',
+        'bins': 4,
+        'title': '$A_{l} = 100, A_{v} = 10^{4} \\cos ( \\Omega_{v} t )$',
         'x_label': '$\\omega_{0} t$',
-        'y_legend': ['$\\theta_{0} = 0.0$', '$\\theta_{0} = 0.1$'],
-        'y_colors': ['b', 'r'],
-        'v_label': '$E_{N}$'
+        'y_legend': [
+            '$\\Omega_{v} = 0.0, \\theta_{0} = 0.0, \\theta_{1} = 0.0$', 
+            '$\\Omega_{v} = 2.0, \\theta_{0} = 0.0, \\theta_{1} = 0.0$', 
+            '$\\Omega_{v} = 2.0, \\theta_{0} = - 0.5, \\theta_{1} = 2.0$'
+        ],
+        'v_label': '$E_{N}$',
+        'v_bound': 'both',
+        'v_ticks': [0.00, 0.05, 0.10, 0.15, 0.20]
     }
 }
 
@@ -59,30 +66,26 @@ init_log()
 # initialize system
 system = Mod01(params['system'])
 
-# get entanglement without modulation
-system.params['A_vs'][0] = 0.0
-system.params['A_vs'][1] = 1e5
-system.params['Omegas'][1] = 0.0
-system.params['thetas'][0] = 0.0
-system.params['thetas'][1] = 0.0
+# get entanglement without any modulation
 M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
-# get entanglement with modulation
-system.params['A_vs'][0] = 0.0
-system.params['A_vs'][1] = 1e5
+# get entanglement with voltage modulation
 system.params['Omegas'][1] = 2.0
-system.params['thetas'][0] = 0.0
-system.params['thetas'][1] = 0.0
 M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+
+# get entanglement with voltage and frequency modulation
+system.params['thetas'][0] = - 0.5
+system.params['thetas'][1] = 1.0
+M_2, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
 
 # plotter
 axes = {
     'X': T,
     'Y': {
         'var': 'As',
-        'val': [0, 1]
+        'val': [0, 1, 2]
     }
 }
 plotter = MPLPlotter(axes, params['plotter'])
-plotter.update(xs=[T, T], vs=[M_0, M_1])
-plotter.show(True)
+plotter.update(xs=[T, T, T], vs=[M_0, M_1, M_2])
+plotter.show(True, width=8.0)
