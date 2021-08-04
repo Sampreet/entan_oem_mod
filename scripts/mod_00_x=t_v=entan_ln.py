@@ -74,4 +74,4 @@ axes = {
 }
 plotter = MPLPlotter(axes, params['plotter'])
 plotter.update(xs=[T, T], vs=[M_0, M_1])
-plotter.show(True)
+plotter.show(True, width=8.0)

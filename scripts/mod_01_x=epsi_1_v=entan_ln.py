@@ -16,7 +16,7 @@ params = {
     'looper': {
         'show_progress': True,
         'X': {
-            'var': 'thetas',
+            'var': 'epsis',
             'idx': 1,
             'min': 1.8,
             'max': 2.2,
@@ -67,14 +67,14 @@ params = {
 
 # lowest amplitude
 params['system']['epsis'][0] = - 0.1
-looper = wrap_looper(system=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_00/entan_ln')
+looper = wrap_looper(SystemClass=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 T = looper.results['X']
 M_0 = looper.results['V']
 
 # highest amplitude
 params['system']['epsis'][0] = 0.1
-looper = wrap_looper(system=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_00/entan_ln')
+looper = wrap_looper(SystemClass=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 M_1 = looper.results['V']
 

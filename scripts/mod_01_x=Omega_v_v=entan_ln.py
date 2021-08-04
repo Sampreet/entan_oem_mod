@@ -15,7 +15,6 @@ from systems.Mod01 import Mod01
 params = {
     'looper': {
         'show_progress': True,
-        'mode': 'multithread',
         'X': {
             'var': 'Omegas',
             'idx': 1,
@@ -25,7 +24,6 @@ params = {
         }
     },
     'solver': {
-        'show_progress': True,
         'cache': True,
         'cache_dir': 'H:/Workspace/data/mod_01/0.0_1000.0_10001',
         'method': 'zvode',
@@ -69,7 +67,7 @@ params = {
 
 # without modulation
 params['solver']['idx_e'] = (1, 2)
-looper = wrap_looper(system=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_00/entan_ln')
+looper = wrap_looper(SystemClass=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 X = looper.results['X']
 M_0 = looper.results['V']
@@ -78,7 +76,7 @@ M_0 = looper.results['V']
 params['system']['epsis'][0] = - 0.5
 params['system']['epsis'][1] = 2.0
 params['solver']['idx_e'] = (1, 2)
-looper = wrap_looper(system=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_00/entan_ln')
+looper = wrap_looper(SystemClass=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 M_1 = looper.results['V']
 

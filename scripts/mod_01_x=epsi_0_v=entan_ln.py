@@ -16,7 +16,7 @@ params = {
     'looper': {
         'show_progress': True,
         'X': {
-            'var': 'thetas',
+            'var': 'epsis',
             'idx': 0,
             'min': -0.5,
             'max': 0.5,
@@ -45,8 +45,8 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [0.0, 2.0],
         'omegas': [1.0, 1.0],
-        'thetas': [0.0, 0.0],
-        't_mod': 'cos',
+        'epsis': [0.0, 0.0],
+        't_mods': ['cos', 'cos', 'cos'],
         't_pos': 'top'
     },
     'plotter': {
@@ -67,14 +67,14 @@ params = {
 
 # get average entanglement
 params['system']['epsis'][1] = 1.0
-looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper', 'data/mod_01/entan_ln')
+looper = wrap_looper(SystemClass=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 T = looper.results['X']
 M_0 = looper.results['V']
 
 # get average entanglement
 params['system']['epsis'][1] = 2.0
-looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper', 'data/mod_01/entan_ln')
+looper = wrap_looper(SystemClass=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 M_1 = looper.results['V']
 

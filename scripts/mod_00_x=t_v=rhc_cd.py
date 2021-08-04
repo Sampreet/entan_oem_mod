@@ -5,6 +5,7 @@ import sys
 # qom modules
 from qom.ui import init_log
 from qom.ui.plotters import MPLPlotter
+from qom.utils.wrappers import wrap_looper
 
 # add path to local libraries
 sys.path.append(os.path.abspath(os.path.join('..', 'entan_oem_mod')))
@@ -61,4 +62,4 @@ axes = {
 }
 plotter = MPLPlotter(axes, params['plotter'])
 plotter.update(xs=T, vs=Counts)
-plotter.show(True)
+plotter.show(True, width=8.0)

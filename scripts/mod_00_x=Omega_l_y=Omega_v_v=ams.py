@@ -71,6 +71,6 @@ params = {
 }
 
 # looper
-looper = wrap_looper(system=Mod00, params=params, func='ams', looper='xy_looper', file_path='data/mod_00/entan_ln', plot=True)
+looper = wrap_looper(SystemClass=Mod00, params=params, func='ams', looper='xy_looper', file_path='data/mod_00/entan_ln', plot=True)
 # calculate thresholds
 print(looper.get_thresholds(thres_mode='minmax'))
