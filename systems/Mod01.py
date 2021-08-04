@@ -5,7 +5,7 @@
 
 __authors__ = ['Sampreet Kalita']
 __created__ = '2021-06-14'
-__updated__ = '2021-06-25'
+__updated__ = '2021-08-04'
 
 # dependencies
 import numpy as np
@@ -42,8 +42,8 @@ class Mod01(SODMSystem):
             'n_ths': params.get('n_ths', [0, 0]),
             'Omegas': params.get('Omegas', [2.0, 2.0]),
             'omegas': params.get('omegas', [1.0, 1.0]),
-            'thetas': params.get('thetas', [0.1, 2.0]),
-            't_mod': params.get('t_mod', 'cos'),
+            'epsis': params.get('epsis', [0.1, 2.0]),
+            't_mods': params.get('t_mods', ['cos', 'cos', 'cos']),
             't_pos': params.get('t_pos', 'top')
         }
         # drift matrix
@@ -55,7 +55,7 @@ class Mod01(SODMSystem):
         Parameters
         ----------
         modes : list
-            Values of the optical and mechancial modes.
+            Values of the modes.
         params : list
             Constant parameters.
         t : float
@@ -72,11 +72,10 @@ class Mod01(SODMSystem):
         gammas  = [params[5], params[6]]
         gs      = [params[7], params[8]]
         kappa   = params[9]
-        Omegas  = [params[10], params[11]]
         omegas  = [params[12], params[13]]
-        thetas  = [params[14], params[15]]
-        t_mod   = params[16]
-        t_pos   = params[17]
+        epsis   = [params[14], params[15]]
+        t_mods  = [params[16], params[17], params[18]]
+        t_pos   = params[19]
         alpha   = modes[0]
         betas   = [modes[1], modes[2]]
 
@@ -86,12 +85,13 @@ class Mod01(SODMSystem):
         g_1 = - gs[1] if t_pos == 'bottom' else gs[1]
         G_10 = 2 * g_1 * np.real(betas[0])
         G_11 = 2 * g_1 * np.real(betas[1])
-        func_mod = lambda Theta : {
-            'exp': np.exp(1j * Theta),
-            'cos': np.cos(Theta),
-            'sin': np.sin(Theta)
-        }.get(t_mod, np.cos(Theta))
-        omega_0 = omegas[0] * np.sqrt(1 + thetas[0] * func_mod(thetas[1] * t))
+        # modulation function
+        mod_func = {
+            'cos': np.cos(epsis[1] * t),
+            'exp': np.exp(1j * epsis[1] * t),
+            'sin': np.sin(epsis[1] * t)
+        }.get(t_mods[2], np.cos(epsis[1] * t))
+        omega_0 = omegas[0] * np.sqrt(1 + epsis[0] * mod_func)
 
         # initialize drift matrix
         if self.A is None or np.shape(self.A) != (6, 6):
@@ -146,8 +146,8 @@ class Mod01(SODMSystem):
             Next element contains the optical decay rate.
             Next 2 elements contain the laser and voltage modulation frequencies.
             Next 2 elements contain the mechanical and LC frequencies.
-            Next element contains the amplitude and frequency of the frequency modulation.
-            Next element contains the type of modulation function.
+            Next 2 elements contain the amplitude and frequency of the frequency modulation.
+            Next 3 elements contain the type of modulation functions.
             Next element contains the position of the mechanical element.
         """
 
@@ -161,8 +161,8 @@ class Mod01(SODMSystem):
         n_ths   = self.params['n_ths']
         Omegas  = self.params['Omegas']
         omegas  = self.params['omegas']
-        thetas  = self.params['thetas']
-        t_mod   = self.params['t_mod']
+        epsis   = self.params['epsis']
+        t_mods  = self.params['t_mods']
         t_pos   = self.params['t_pos']
  
         # initial mode values as 1D list
@@ -170,12 +170,12 @@ class Mod01(SODMSystem):
 
         # initial quadrature correlations
         corrs_0 = np.zeros([6, 6], dtype=np.float_)
-        corrs_0[0][0] = 1/2 
-        corrs_0[1][1] = 1/2
-        corrs_0[2][2] = (n_ths[0] + 1/2)
-        corrs_0[3][3] = (n_ths[0] + 1/2)
-        corrs_0[4][4] = (n_ths[1] + 1/2)
-        corrs_0[5][5] = (n_ths[1] + 1/2)
+        corrs_0[0][0] = 0.5 
+        corrs_0[1][1] = 0.5
+        corrs_0[2][2] = (n_ths[0] + 0.5)
+        corrs_0[3][3] = (n_ths[0] + 0.5)
+        corrs_0[4][4] = (n_ths[1] + 0.5)
+        corrs_0[5][5] = (n_ths[1] + 0.5)
 
         # convert to 1D list and concatenate all variables
         iv = modes_0 + [np.complex(element) for element in corrs_0.flatten()]
@@ -201,8 +201,9 @@ class Mod01(SODMSystem):
             [kappa] + \
             Omegas + \
             omegas + \
-            thetas + \
-            [t_mod, t_pos]
+            epsis + \
+            t_mods + \
+            [t_pos]
 
         # all constants
         c = D.flatten().tolist() + params
@@ -236,23 +237,24 @@ class Mod01(SODMSystem):
         kappa   = params[9]
         Omegas  = [params[10], params[11]]
         omegas  = [params[12], params[13]]
-        thetas  = [params[14], params[15]]
-        t_mod   = params[16]
-        t_pos   = params[17]
+        epsis   = [params[14], params[15]]
+        t_mods  = [params[16], params[17], params[18]]
+        t_pos   = params[19]
         alpha   = modes[0]
         betas   = [modes[1], modes[2]]
 
         # effective values
         Delta = Delta_0 - 2 * gs[0] * np.real(betas[0])
         g_1 = - gs[1] if t_pos == 'bottom' else gs[1] 
-        func_mod = lambda Theta : {
-            'exp': np.exp(1j * Theta),
-            'cos': np.cos(Theta),
-            'sin': np.sin(Theta)
-        }.get(t_mod, np.cos(Theta))
-        A_l = (A_ls[0] + A_ls[1] * func_mod(Omegas[0] * t))
-        A_v = (A_vs[0] + A_vs[1] * func_mod(Omegas[1] * t))
-        omega_0 = omegas[0] * np.sqrt(1 + thetas[0] * func_mod(thetas[1] * t))
+        # modulation function selector
+        get_mod = lambda idx, omega : {
+            'cos': np.cos(omega * t),
+            'exp': np.exp(1j * omega * t),
+            'sin': np.sin(omega * t)
+        }.get(t_mods[idx], np.cos(omega * t))
+        A_l = (A_ls[0] + A_ls[1] * get_mod(0, Omegas[0]))
+        A_v = (A_vs[0] + A_vs[1] * get_mod(1, Omegas[1]))
+        omega_0 = omegas[0] * np.sqrt(1 + epsis[0] * get_mod(2, epsis[1]))
 
         # calculate rates
         # optical mode

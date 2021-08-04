@@ -19,6 +19,8 @@ The following models are studied:
 
 * A. Farace and V. Giovannetti, *Enhancing Quantum Effects via Periodic Modulations in Optomechanical Systems*, [Phys. Rev. A **86**, 013820](https://doi.org/10.1103/PhysRevA.86.013820) (2012)
 
+* Y.-D. Wang and A. A. Clerk, *Reservoir-engineered Entanglement in Optomechanical Systems*, [Phys. Rev. Lett. **110**, 253601](https://doi.org/10.1103/PhysRevLett.110.253601) (2013)
+
 * R.-X. Chen, L.-T. Shen, Z.-B. Yang, H.-Z. Wu and S.-B. Zheng, *Enhancement of Entanglement in Distant Mechanical Vibrations via Modulation in a Coupled Optomechanical System*, [Phys. Rev. A **89**, 023843](https://link.aps.org/doi/10.1103/PhysRevA.89.023843) (2014)
 
 * E. A. Sete, H. Eleuch and C. H. Raymond Ooi, *Light-to-matter Entanglement Transfer in Optomechanics*, [J. Opt. Soc. Am. B **31**, 2821](https://doi.org/10.1364/JOSAB.31.002821) (2014)
@@ -47,7 +49,7 @@ conda create -n qom python=3
 conda activate qom
 ```
 
-This project uses [The Quantum Optomechanics Toolbox](https://github.com/Sampreet/qom) via Python Package Index using `pip`:
+This project uses [The Quantum Optomechanics Toolbox](https://github.com/Sampreet/qom) (v0.7.8) via Python Package Index using `pip`:
 
 ```bash
 pip install -i https://test.pypi.org/simple/ qom

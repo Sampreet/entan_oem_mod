@@ -32,7 +32,7 @@ params = {
     },
     'solver': {
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
+        'cache_dir': 'H:/Workspace/data/mod_00/0.0_1000.0_10001',
         'range_min': 9999,
         'range_max': 10001,
         't_min': 0,
@@ -49,7 +49,7 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        't_mod': 'cos',
+        't_mods': ['cos', 'cos'],
         't_pos': 'bottom'
     },
     'plotter': {
@@ -76,19 +76,20 @@ init_log()
 # initialize system
 system = Mod00(params['system'])
 
-# function to calculate Routh-Hurwitz criteria
-def func_stability(system_params, val, logger, results):
+# function to calculate stability based on Routh-Hurwitz criteria
+def func_rhc_stab(system_params, val, logger, results):
     # update parameters
     system.params = system_params
     # get RHC counts
-    Counts, _ = system.get_rhc_count_dynamics(params['solver'], system.ode_func, system.get_ivc, system.get_A)
+    Counts, _ = system.get_rhc_count_dynamics(params['solver'], system.func_ode, system.get_ivc, system.get_A)
     # check for stability
-    stable = 0
+    stability = 0
     if np.mean(Counts) != 0.0:
-        stable = 1
+        stability = 1
     # update results
-    results.append((val, stable))
+    results.append((val, stability))
 
 # looper
-looper = XYLooper(func_stability, params)
-looper.loop(plot=True)
+looper = XYLooper(func_rhc_stab, params)
+looper.loop()
+looper.plot_results(True)

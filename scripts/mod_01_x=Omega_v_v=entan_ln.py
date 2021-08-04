@@ -27,12 +27,10 @@ params = {
     'solver': {
         'show_progress': True,
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_01/0.0_1000.0_10001',
-        'method': 'ode',
-        'measure_type': 'qcm',
-        'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
+        'cache_dir': 'H:/Workspace/data/mod_01/0.0_1000.0_10001',
+        'method': 'zvode',
+        'measure_type': 'entan_ln',
+        'idx_e': (1, 2),
         'range_min': 9371,
         'range_max': 10001,
         't_min': 0,
@@ -49,8 +47,8 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [0.0, 0.0],
         'omegas': [1.0, 1.0],
-        'thetas': [0.0, 0.0],
-        't_mod': 'cos',
+        'epsis': [0.0, 0.0],
+        't_mods': ['cos', 'cos', 'cos'],
         't_pos': 'top'
     },
     'plotter': {
@@ -69,20 +67,18 @@ params = {
     }
 }
 
-# get average entanglement
-params['solver']['idx_mode_i'] = 1
-params['solver']['idx_mode_j'] = 2
-looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper')
+# without modulation
+params['solver']['idx_e'] = (1, 2)
+looper = wrap_looper(system=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_00/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 X = looper.results['X']
 M_0 = looper.results['V']
 
-# get average entanglement
-params['system']['thetas'][0] = - 0.5
-params['system']['thetas'][1] = 2.0
-params['solver']['idx_mode_i'] = 1
-params['solver']['idx_mode_j'] = 2
-looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper')
+# with modulation
+params['system']['epsis'][0] = - 0.5
+params['system']['epsis'][1] = 2.0
+params['solver']['idx_e'] = (1, 2)
+looper = wrap_looper(system=Mod01, params=params, func='ams', looper='x_looper', file_path='data/mod_00/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 M_1 = looper.results['V']
 

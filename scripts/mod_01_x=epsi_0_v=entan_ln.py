@@ -17,20 +17,18 @@ params = {
         'show_progress': True,
         'X': {
             'var': 'thetas',
-            'idx': 1,
-            'min': 1.8,
-            'max': 2.2,
-            'dim': 41
+            'idx': 0,
+            'min': -0.5,
+            'max': 0.5,
+            'dim': 11
         }
     },
     'solver': {
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_01/0.0_1000.0_10001',
-        'method': 'ode',
-        'measure_type': 'qcm',
-        'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
+        'cache_dir': 'H:/Workspace/data/mod_01/0.0_1000.0_10001',
+        'method': 'zvode',
+        'measure_type': 'entan_ln',
+        'idx_e': (1, 2),
         'range_min': 9371,
         'range_max': 10001,
         't_min': 0,
@@ -59,8 +57,8 @@ params = {
         'title': '$A_{l} = 10^{2}, A_{v} = 10^{4} \\cos ( \\Omega_{v} t ), \\Omega_{v} = 2.0$',
         'x_label': '$\\theta_{0}$',
         'x_bound': 'both',
-        'x_ticks': [1.8, 1.9, 2.0, 2.1, 2.2],
-        'y_legend': ['$\\theta_{0} = -0.1$', '$\\theta_{0} = 0.1$'],
+        'x_ticks': [-0.50, -0.25, 0.0, 0.25, 0.50],
+        'y_legend': ['$\\theta_{1} = 1.0$', '$\\theta_{1} = 2.0$'],
         'v_label': '$\\bar{E}_{N_{EM}}$',
         'v_bound': 'both',
         'v_ticks': [0.00, 0.05, 0.10, 0.15, 0.20]
@@ -68,15 +66,15 @@ params = {
 }
 
 # get average entanglement
-params['system']['thetas'][0] = - 0.1
-looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper', 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_01/E_N_1_2_1e3-10')
+params['system']['epsis'][1] = 1.0
+looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper', 'data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 T = looper.results['X']
 M_0 = looper.results['V']
 
 # get average entanglement
-params['system']['thetas'][0] = 0.1
-looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper', 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_01/E_N_1_2_1e3-10')
+params['system']['epsis'][1] = 2.0
+looper = wrap_looper(Mod01, params, 'measure_average', 'XLooper', 'data/mod_01/entan_ln')
 print(looper.get_thresholds(thres_mode='minmax'))
 M_1 = looper.results['V']
 

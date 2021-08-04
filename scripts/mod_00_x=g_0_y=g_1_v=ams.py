@@ -30,12 +30,10 @@ params = {
     },
     'solver': {
         'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
-        'method': 'ode',
-        'measure_type': 'qcm',
-        'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
+        'cache_dir': 'H:/Workspace/data/mod_00/0.0_1000.0_10001',
+        'method': 'zvode',
+        'measure_type': 'entan_ln',
+        'idx_e': (1, 2),
         'range_min': 9371,
         'range_max': 10001,
         't_min': 0,
@@ -52,7 +50,7 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        't_mod': 'cos',
+        't_mods': ['cos', 'cos'],
         't_pos': 'bottom'
     },
     'plotter': {
@@ -72,8 +70,7 @@ params = {
     }
 }
 
-# get average entanglement
-looper = wrap_looper(Mod00, params, 'measure_average', 'XYLooper', 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/E_N_Omega_E_1.0_Omega_V_1.0', True)
-
+# looper
+looper = wrap_looper(system=Mod00, params=params, func='ams', looper='xy_looper', file_path='data/mod_00/entan_ln', plot=True)
 # calculate thresholds
-print(looper.get_thresholds())
+print(looper.get_thresholds(thres_mode='minmax'))

@@ -15,13 +15,9 @@ from systems.Mod00 import Mod00
 params = {
     'solver': {
         'show_progress': True,
-        'cache': False,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_00/0.0_1000.0_10001',
-        'method': 'ode',
-        'measure_type': 'qcm',
-        'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
+        'method': 'zvode',
+        'measure_type': 'entan_ln',
+        'idx_e': (1, 2),
         'range_min': 0,
         'range_max': 10001,
         't_min': 0,
@@ -38,7 +34,7 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        't_mod': 'cos',
+        't_mods': ['cos', 'cos'],
         't_pos': 'bottom'
     },
     'plotter': {
@@ -61,12 +57,12 @@ system = Mod00(params['system'])
 # get entanglement without modulation
 system.params['A_ls'][1] = 0.0
 system.params['A_vs'][1] = 0.0
-M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+M_0, T = system.get_measure_dynamics(params['solver'], system.func_ode, system.get_ivc)
 
 # get entanglement with modulation
 system.params['A_ls'][1] = 5.0
 system.params['A_vs'][1] = 10.0
-M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+M_1, T = system.get_measure_dynamics(params['solver'], system.func_ode, system.get_ivc)
 
 # plotter
 axes = {

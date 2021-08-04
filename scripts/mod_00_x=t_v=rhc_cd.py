@@ -15,13 +15,12 @@ from systems.Mod00 import Mod00
 params = {
     'solver': {
         'show_progress': True,
-        'cache': True,
-        'method': 'ode',
-        'range_min': 371,
-        'range_max': 1001,
+        'method': 'zvode',
+        'range_min': 9371,
+        'range_max': 10001,
         't_min': 0,
-        't_max': 100,
-        't_dim': 1001
+        't_max': 1000,
+        't_dim': 10001
     },
     'system': {
         'A_ls': [50, 0.0],
@@ -33,7 +32,7 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
-        't_mod': 'cos',
+        't_mods': ['cos', 'cos'],
         't_pos': 'bottom'
     },
     'plotter': {
@@ -54,7 +53,7 @@ init_log()
 system = Mod00(params['system'])
 
 # get modes
-Counts, T = system.get_rhc_count_dynamics(params['solver'], system.ode_func, system.get_ivc, system.get_A)
+Counts, T = system.get_rhc_count_dynamics(params['solver'], system.func_ode, system.get_ivc, system.get_A)
 
 # plotter
 axes = {

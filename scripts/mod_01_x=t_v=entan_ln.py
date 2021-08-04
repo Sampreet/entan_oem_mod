@@ -15,13 +15,9 @@ from systems.Mod01 import Mod01
 params = {
     'solver': {
         'show_progress': True,
-        'cache': True,
-        'cache_dir': 'H:/Workspace/VSCode/Python/entan_oem_mod/data/mod_01/0.0_1000.0_10001',
-        'method': 'ode',
-        'measure_type': 'qcm',
-        'qcm_type': 'entan',
-        'idx_mode_i': 1,
-        'idx_mode_j': 2,
+        'method': 'zvode',
+        'measure_type': 'entan_ln',
+        'idx_e': (1, 2),
         'range_min': 0,
         'range_max': 10001,
         't_min': 0,
@@ -38,8 +34,8 @@ params = {
         'n_ths': [0, 0],
         'Omegas': [0.0, 0.0],
         'omegas': [1.0, 1.0],
-        'thetas': [0.0, 0.0],
-        't_mod': 'cos',
+        'epsis': [0.0, 0.0],
+        't_mods': ['cos', 'cos', 'cos'],
         't_pos': 'top'
     },
     'plotter': {
@@ -67,16 +63,16 @@ init_log()
 system = Mod01(params['system'])
 
 # get entanglement without any modulation
-M_0, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+M_0, T = system.get_measure_dynamics(params['solver'], system.func_ode, system.get_ivc)
 
 # get entanglement with voltage modulation
 system.params['Omegas'][1] = 2.0
-M_1, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+M_1, T = system.get_measure_dynamics(params['solver'], system.func_ode, system.get_ivc)
 
 # get entanglement with voltage and frequency modulation
-system.params['thetas'][0] = - 0.5
-system.params['thetas'][1] = 1.0
-M_2, T = system.get_measure_dynamics(params['solver'], system.ode_func, system.get_ivc)
+system.params['epsis'][0] = - 0.5
+system.params['epsis'][1] = 1.0
+M_2, T = system.get_measure_dynamics(params['solver'], system.func_ode, system.get_ivc)
 
 # plotter
 axes = {

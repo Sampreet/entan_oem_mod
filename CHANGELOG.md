@@ -1,5 +1,12 @@
 # Changelog
 
+## 2021/08/04 - 00 - Version Upgrade
+> Toolbox version 0.7.8
+* Added notebooks for `mod_00`.
+* Added scripts for `mod_00` and `mod_01`.
+* Updated parameters in `Mod00` and `Mod01`.
+* Updated `README`.
+
 ## 2021/07/03 - 00 - Added Scripts
 > Toolbox version 0.7.7
 * Added scripts for `mod_01`.
