@@ -19,10 +19,10 @@ params = {
         'measure_type': 'entan_ln',
         'idx_e': (1, 2),
         'range_min': 0,
-        'range_max': 10001,
+        'range_max': 1001,
         't_min': 0,
-        't_max': 1000,
-        't_dim': 10001
+        't_max': 100,
+        't_dim': 1001
     },
     'system': {
         'A_ls': [50, 0.0],
@@ -44,7 +44,8 @@ params = {
         'x_label': '$\\omega_{0} t$',
         'y_legend': ['$A_{l}^{(1)} = 0.0, A_{v}^{(1)} = 0.0$', '$A_{l}^{(1)} = 3.0, A_{v}^{(1)} = 1.5$'],
         'y_colors': ['b', 'r'],
-        'v_label': '$E_{N}$'
+        'v_label': '$E_{N}$',
+        'width': 8.0
     }
 }
 
@@ -74,4 +75,4 @@ axes = {
 }
 plotter = MPLPlotter(axes, params['plotter'])
 plotter.update(xs=[T, T], vs=[M_0, M_1])
-plotter.show(True, width=8.0)
+plotter.show(True)

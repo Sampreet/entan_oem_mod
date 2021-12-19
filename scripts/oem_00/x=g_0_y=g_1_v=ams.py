@@ -1,4 +1,5 @@
 # dependencies
+import numpy as np
 import os 
 import sys
 
@@ -16,22 +17,24 @@ params = {
         'X': {
             'var': 'gs',
             'idx': 0,
-            'min': 0.000,
-            'max': 0.005,
-            'dim': 51
+            'min': -8,
+            'max': -3,
+            'dim': 101,
+            'scale': 'log'
         },
         'Y': {
             'var': 'gs',
             'idx': 1,
-            'min': 0.000,
-            'max': 0.005,
-            'dim': 51
+            'min': -6,
+            'max': -5,
+            'dim': 21,
+            'scale': 'log'
         }
     },
     'solver': {
         'cache': True,
         'cache_dir': 'H:/Workspace/data/mod_00/0.0_1000.0_10001',
-        'method': 'zvode',
+        'method': 'RK45',
         'measure_type': 'entan_ln',
         'idx_e': (1, 2),
         'range_min': 9371,
@@ -51,7 +54,7 @@ params = {
         'Omegas': [2.0, 2.0],
         'omegas': [1.0, 1.0],
         't_mods': ['cos', 'cos'],
-        't_pos': 'bottom'
+        't_pos': 'top'
     },
     'plotter': {
         'type': 'contourf',
@@ -59,14 +62,16 @@ params = {
         'bins': 11,
         'x_label': '$g_{0}$',
         'x_bound': 'both',
-        'x_ticks': [0.000, 0.001, 0.002, 0.003, 0.004, 0.005],
+        'x_scale': 'log',
+        'x_ticks': [10**((- i - 3)) for i in range(6)],
         'y_label': '$g_{1}$',
         'y_bound': 'both',
-        'y_ticks': [0.000, 0.001, 0.002, 0.003, 0.004, 0.005],
+        'y_scale': 'log',
+        'y_ticks': [1e-6, 2e-6, 3e-6, 4e-6, 6e-6, 10e-6],
         'show_cbar': True,
         'cbar_position': 'top',
         'cbar_title': '$E_{N}$',
-        'cbar_ticks': [0.0, 0.05, 0.1, 0.15, 0.2]
+        'cbar_ticks': [0.001 * i for i in range(6)]
     }
 }
 

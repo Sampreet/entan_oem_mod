@@ -49,13 +49,13 @@ conda create -n qom python=3
 conda activate qom
 ```
 
-This project uses [The Quantum Optomechanics Toolbox](https://github.com/Sampreet/qom) (v0.7.8) via Python Package Index using `pip`:
+This project uses [The Quantum Optomechanics Toolbox](https://github.com/Sampreet/qom) via Python Package Index using `pip`:
 
 ```bash
 pip install -i https://test.pypi.org/simple/ qom
 ```
 
-Alternatively, [clone](https://github.com/Sampreet/qom) or [download](https://github.com/Sampreet/qom/archive/refs/heads/master.zip) as `.zip` and extract the contents:
+Alternatively, [clone the repository](https://github.com/Sampreet/qom) or [download the sources](https://github.com/Sampreet/qom/archive/refs/heads/master.zip) as `.zip` and extract the contents.
 Now, execute the following from *outside* the top-level directory, `ROOT_DIR`, inside which `setup.py` is located:
 
 ```bash
@@ -75,7 +75,7 @@ Here, `foo_bar.py` is the name of the script.
 To run in GUI mode using `PowerShell` or `bash`, navigate to `ROOT_DIR` and execute:
 
 ```bash
-python -c 'from qom.ui import run; run()'
+python -c 'from qom.ui.gui import run; run()'
 ```
 
-Alternatively, run `GUI.py`.
+Alternatively, run `GUI.py` from within the directory.

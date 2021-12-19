@@ -1,5 +1,10 @@
 # Changelog
 
+## 2021/10/28 - 00 - Version Upgrade
+> Toolbox version 0.8.0
+* Added adiabatic elimination notebook for `mod_00`.
+* Updated scripts for `mod_00` and `mod_01`.
+
 ## 2021/08/04 - 01 - Adiabatic Elimination
 > Toolbox version 0.7.8
 * Added adiabatic elimination notebook for `mod_00`.
