@@ -1,13 +1,23 @@
-# Quantum Entanglement in Modulated Optoelectromechanical Systems
+# Significant Optoelectrical Entanglement with Strong Mechanical Squeezing in a Multi-modulated Optoelectromechanical System
+
+[![Version](https://img.shields.io/badge/version-2.0-red?style=for-the-badge)](#)
+
+> A collection of all data and scripts for the work.
+
+Author | Affiliation
+------------ | -------------
+[Sampreet Kalita](https://www.iitg.ac.in/stud/sampreet/) | Department of Physics, Indian Institute of Technology Guwahati, Assam 781039, India
+[Saumya Shah Amit](https://www.iitg.ac.in/stud/shah18/) | Department of Physics, Indian Institute of Technology Guwahati, Assam 781039, India
+[Amarendra Kumar Sarma](https://www.iitg.ac.in/aksarma/) | Department of Physics, Indian Institute of Technology Guwahati, Assam 781039, India
 
 ## About the Work
 
-We investigate the dynamics of quantum entanglement in an optoelectromechanical system consisting of an optical cavity and an LC circuit sharing a common mechanical membrane.
-We analyze the stability of the system in presence of modulations and the maximum entanglement achievable by the stable system.
-
-The following models are studied:
-* ***Model 00 - Amplitude Modulation*** - The cavity and circuit are driven by modulated laser and voltage amplitudes.
-* ***Model 01 - Frequency Modulation*** - The spring constant of the mechanical motion is modulated.
+We propose the effective generation of entangled and squeezed states in an optoelectromechanical system comprising of a macroscopic LC electrical circuit and an optomechanical system.
+We notice an enhancement in the optoelectrical entanglement. 
+This boost is obtained by application of modulations in the laser drive amplitude, the voltage drive amplitude and the spring constant of the moveable end-mirror. 
+The maximum amount of entanglement is observed to be primarily dependent on the voltage modulation. 
+Alongside the generated entanglement, we also study the variation of squeezing in the mechanical mode for different parameter regimes.
+The observation of maximum squeezing and maximum entanglement windows for the system, when all three types of modulations are applied, is reported.
 
 ## Related Works
 
@@ -34,6 +44,28 @@ The following models are studied:
 * J. Li and S. Groblacher, *Stationary Quantum Entanglement between a Massive Mechanical Membrane and a Low Frequency LC Circuit*, [New J. Phys. **22**, 063041](https://doi.org/10.1088/1367-2630/ab90d2) (2020)
 
 * N. Malossi, P. Piergentili, J. Li, E. Serra, R. Natali, G. Di Giuseppe and D. Vitali, *Sympathetic Cooling of a Radio-frequency LC Circuit to its Ground State in an Optoelectromechanical System*, [Phys. Rev. A **103**, 033516](https://link.aps.org/doi/10.1103/PhysRevA.103.0335166) (2021).
+
+## Structure of the Repository
+
+```
+ROOT_DIR/
+|
+├───data/
+│   ├───foo-bar/
+│   │   ├───baz_xyz.npz
+│   │   └───...
+│   └───...
+|
+│───scripts/
+│   ├───foo-bar/
+│   │   ├───baz.py
+│   │   └───...
+│   └───...
+│
+├───.gitignore
+├───CHANGELOG.md
+└───README.md
+```
 
 ## Execution
 
@@ -67,15 +99,7 @@ pip install -e ROOT_DIR
 To run the scripts, navigate *inside* the top-level directory, `ROOT_DIR`, and execute:
 
 ```bash
-python scripts/foo_bar.py
+python scripts/foo-bar/baz.py
 ```
 
-Here, `foo_bar.py` is the name of the script.
-
-To run in GUI mode using `PowerShell` or `bash`, navigate to `ROOT_DIR` and execute:
-
-```bash
-python -c 'from qom.ui.gui import run; run()'
-```
-
-Alternatively, run `GUI.py` from within the directory.
+Here, `foo-bar` is the name of the folder and  `baz.py` is the name of the file.
