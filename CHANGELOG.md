@@ -1,5 +1,10 @@
 # Changelog
 
+## 2022/09/03 - 00 - Added Plots
+> Toolbox version 0.8.6
+* Added data and scripts for higher number of cycles.
+* Updated `README`.
+
 ## 2022/07/04 - 00 - Separated Systems
 > Toolbox version 0.8.5
 * Added data and scripts for `v2.0` of the manuscript.
