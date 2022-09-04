@@ -1,6 +1,6 @@
-# Significant Optoelectrical Entanglement with Strong Mechanical Squeezing in a Multi-modulated Optoelectromechanical System
+# Significant Optoelectrical Entanglement and Mechanical Squeezing in a Multi-modulated Optoelectromechanical System
 
-[![Version](https://img.shields.io/badge/version-2.0-red?style=for-the-badge)](#)
+[![Version](https://img.shields.io/badge/version-4.0-red?style=for-the-badge)](#)
 
 > A collection of all data and scripts for the work.
 
