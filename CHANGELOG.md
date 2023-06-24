@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023/06/24 - 00 - Added System to Project
+> Toolbox version 0.8.6
+* Added `OEM_20` system in `systems`.
+
 ## 2022/09/03 - 00 - Added Plots
 > Toolbox version 0.8.6
 * Added data and scripts for higher number of cycles.

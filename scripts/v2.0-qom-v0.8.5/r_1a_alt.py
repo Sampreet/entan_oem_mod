@@ -8,7 +8,7 @@ from qom.utils.looper import wrap_looper
 from qom.ui.plotters import MPLPlotter
 
 # add path to local libraries
-sys.path.append(os.path.abspath(os.path.join('..', 'oem-systems')))
+sys.path.append(os.path.abspath(os.path.join('..', 'entan_oem_mod')))
 # import system
 from systems import OEM_20
 
