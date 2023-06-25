@@ -1,6 +1,8 @@
 # Significant Optoelectrical Entanglement and Mechanical Squeezing in a Multi-modulated Optoelectromechanical System
 
-[![Version](https://img.shields.io/badge/version-4.0-red?style=for-the-badge)](#)
+
+[![Version](https://img.shields.io/badge/version-4.0-red?style=for-the-badge)](https://doi.org/10.1103/PhysRevA.106.043501)
+[![Version](https://img.shields.io/badge/qom-v1.0.0-red?style=for-the-badge)](https://sampreet.github.io/qom-docs)
 
 > A collection of all data and scripts for the work.
 
@@ -45,6 +47,10 @@ The observation of maximum squeezing and maximum entanglement windows for the sy
 
 * N. Malossi, P. Piergentili, J. Li, E. Serra, R. Natali, G. Di Giuseppe and D. Vitali, *Sympathetic Cooling of a Radio-frequency LC Circuit to its Ground State in an Optoelectromechanical System*, [Phys. Rev. A **103**, 033516](https://link.aps.org/doi/10.1103/PhysRevA.103.0335166) (2021).
 
+## Notebooks
+
+* [Plots in the Manuscript](notebooks/v4.0.0_qom-v1.0.0/plots.ipynb)
+
 ## Structure of the Repository
 
 ```
@@ -56,10 +62,21 @@ ROOT_DIR/
 │   │   └───...
 │   └───...
 |
+├───notebooks/
+│   ├───foo/
+│   │   ├───baz.ipynb
+│   │   └───...
+│   └───...
+|
 │───scripts/
 │   ├───foo-bar/
-│   │   ├───baz.py
+│   │   ├───baz_xyz.py
 │   │   └───...
+│   └───...
+|
+├───systems/
+│   ├───__init__.py
+│   ├───Foo.py
 │   └───...
 │
 ├───.gitignore
@@ -81,7 +98,7 @@ conda create -n qom python=3
 conda activate qom
 ```
 
-This project uses [The Quantum Optomechanics Toolbox](https://github.com/Sampreet/qom) via Python Package Index using `pip`:
+This project uses [The Quantum Optomechanics Toolbox](https://github.com/Sampreet/qom) which can be installed via Python Package Index using `pip` by executing:
 
 ```bash
 pip install -i https://test.pypi.org/simple/ qom
@@ -99,7 +116,7 @@ pip install -e ROOT_DIR
 To run the scripts, navigate *inside* the top-level directory, `ROOT_DIR`, and execute:
 
 ```bash
-python scripts/foo-bar/baz.py
+python scripts/foo-bar/baz_xyz.py
 ```
 
-Here, `foo-bar` is the name of the folder and  `baz.py` is the name of the file.
+Here, `foo-bar` is the name of the folder inside `scripts` and `baz_xyz.py` is the name of the file.

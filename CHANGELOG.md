@@ -1,5 +1,12 @@
 # Changelog
 
+## 2023/06/25 - 00 - Version Upgrade
+> Toolbox version 1.0.0
+* Added `v4.0_qom-v1.0.0/plots` notebook.
+* Revamped all scripts for `qom` version 1.0.0.
+* Updated `systems/OptoElectroMechanical` module.
+* Updated `.gitignore` and `README`.
+
 ## 2023/06/24 - 00 - Added System to Project
 > Toolbox version 0.8.6
 * Added `OEM_20` system in `systems`.
