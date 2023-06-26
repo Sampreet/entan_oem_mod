@@ -57,13 +57,12 @@ params = {
         'y_tick_position'   : 'both-out',
         'y_ticks'           : [-2, 0, 2],
         'y_ticks_minor'     : [-2, -1, 0, 1, 2],
-        'show_cbar'         : False,
-        'cbar_title'        : '$\\times 10^{-2}$',
-        'cbar_ticks'        : [0.0, 0.025, 0.05],
-        'cbar_tick_labels'  : ['0.0', '2.5', '5.0'],
+        'show_cbar'         : True,
+        'cbar_title'        : '$W$',
+        'cbar_ticks'        : [0.0, 0.1, 0.2, 0.3],
         'label_font_size'   : 40,
         'tick_font_size'    : 35,
-        'width'             : 4.25,
+        'width'             : 5.5,
         'height'            : 4.5
     }
 }
@@ -76,7 +75,7 @@ system = OEM_20(
     params=params['system']
 )
 
-# get modes and correlations
+# get correlations and times
 _, Corrs, T = HLESolver(
     system=system,
     params=params['solver']

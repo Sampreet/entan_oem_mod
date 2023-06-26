@@ -1,6 +1,5 @@
 # Significant Optoelectrical Entanglement and Mechanical Squeezing in a Multi-modulated Optoelectromechanical System
 
-
 [![Version](https://img.shields.io/badge/version-4.0-red?style=for-the-badge)](https://doi.org/10.1103/PhysRevA.106.043501)
 [![Toolbox](https://img.shields.io/badge/qom-v1.0.0-red?style=for-the-badge)](https://sampreet.github.io/qom-docs)
 
@@ -49,7 +48,7 @@ The observation of maximum squeezing and maximum entanglement windows for the sy
 
 ## Notebooks
 
-* [Plots in the Manuscript](notebooks/v4.0.0_qom-v1.0.0/plots.ipynb)
+* [Plots in the Manuscript](notebooks/v4.0_qom-v1.0.0/plots.ipynb)
 
 ## Structure of the Repository
 

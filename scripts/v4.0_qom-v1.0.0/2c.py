@@ -123,7 +123,7 @@ hle_solver  = HLESolver(
     system=system,
     params=params['solver']
 )
-# get modes and correlations
+# get modes, correlations and times
 Modes, Corrs, T = hle_solver.get_modes_corrs_times_in_range()
 # get quantum correlation measures
 Measures = QCMSolver(

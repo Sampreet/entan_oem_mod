@@ -76,7 +76,7 @@ params = {
         'width'                 : 4.8,
         'height'                : 4.0,
         'annotations'           : [{
-            's': '(c)',
+            'text': '(c)',
             'xy': [0.13, 0.82]
         }]
     }
