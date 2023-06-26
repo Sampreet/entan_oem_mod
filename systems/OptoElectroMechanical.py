@@ -4,9 +4,9 @@
 """Class to simulate Opto-electro-mechanical systems."""
 
 __authors__ = ['Sampreet Kalita']
-__version__ = '1.0.0'
+__toolbox__ = 'qom-v1.0.0'
 __created__ = '2021-06-14'
-__updated__ = '2023-06-25'
+__updated__ = '2023-06-26'
 
 # dependencies
 import numpy as np

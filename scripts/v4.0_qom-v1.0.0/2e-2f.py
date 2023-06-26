@@ -10,7 +10,7 @@ from qom.ui import init_log
 from qom.ui.plotters import MPLPlotter
 
 # add path to local libraries
-sys.path.append(os.path.abspath(os.path.join('..', 'entan_oem_mod')))
+sys.path.append(os.path.abspath(os.path.join('.')))
 # import system
 from systems.OptoElectroMechanical import OEM_20
 

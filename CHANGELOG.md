@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023/06/26 - 00 - Minor Fixes
+> Toolbox version 1.0.0
+* Minor updates to paths in notebooks and scripts.
+* Minor updates to system module attributes.
+* Updated `README`.
+
 ## 2023/06/25 - 00 - Version Upgrade
 > Toolbox version 1.0.0
 * Added `v4.0_qom-v1.0.0/plots` notebook.
