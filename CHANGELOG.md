@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023/06/27 - 00 - Updated README
+> Toolbox version 1.0.0
+* Minor fixes to notebooks and scripts.
+* Updated all documentation.
+* Updated `README`.
+
 ## 2023/06/27 - 00 - Minor Fixes
 > Toolbox version 1.0.0
 * Minor fixes to notebooks and scripts.
