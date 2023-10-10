@@ -20,10 +20,10 @@ params = {
         'show_progress': True,
         'X': {
             'var': 'Omegas',
-            'idx': 2,
-            'min': 1.95,
-            'max': 2.05,
-            'dim': 1001
+            'idx': 1,
+            'min': 1.9,
+            'max': 2.1,
+            'dim': 2001
         }
     },
     'solver': {
@@ -55,14 +55,13 @@ params = {
         'type': 'lines',
         'colors': ['k'] + ['r'] * 2 + ['b'] * 2,
         'sizes': [1] + [2] * 4,
-        'styles': ['--'] + ['--', '-'] * 2,
-        'x_label': '$\\Omega_{s} / \\omega_{b0}$',
-        'x_ticks': [1.95 + i * 0.05 for i in range(3)],
-        'x_ticks_minor': [1.95 + i * 0.0125 for i in range(9)],
-        'v_label': '',
+        'styles': ['--'] + ['-.', '-'] * 2,
+        'x_label': '$\\Omega_{v} / \\omega_{b0}$',
+        'x_ticks': [1.9, 1.95, 2.0, 2.05, 2.1],
+        'x_ticks_minor': [1.9 + i * 0.00625 for i in range(33)],
+        'v_label': '$\\langle Q_{b}^{2} \\rangle_{\\mathrm{min}}$',
         'v_label_color': 'r',
         'v_limits': [0.325, 0.675],
-        'v_tick_labels': [''] * 3,
         'v_tick_position': 'left-in',
         'v_ticks': [0.4, 0.5, 0.6],
         'v_ticks_minor': [0.325 + i * 0.025 for i in range(14)],
@@ -74,11 +73,11 @@ params = {
         'v_twin_ticks_minor': [i * 0.015 for i in range(14)],
         'label_font_size': 32,
         'tick_font_size': 28,
-        'width': 4.8,
+        'width': 9.6,
         'height': 4.0,
         'annotations': [{
-            'text': '(c)',
-            'xy': [0.13, 0.82]
+            'text': '(a)',
+            'xy': [0.16, 0.82]
         }]
     }
 }
@@ -112,9 +111,9 @@ def func(system_params):
     return np.array([m_0, m_1], dtype=np.float_)
 
 if __name__ == '__main__':
-    # without voltage modulation
-    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.0/3c_A_vs=[50.0, 0.0, 0.0]'
-    params['system']['A_vs'] = [50.0, 0.0, 0.0]
+    # without mechanical frequency modulation
+    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.1/3a_theta=0.0'
+    params['system']['theta'] = 0.0
     looper_0 = run_loopers_in_parallel(
         looper_name='XLooper',
         func=func,
@@ -124,9 +123,9 @@ if __name__ == '__main__':
     )
     Sq_0, En_0 = np.transpose(looper_0.results['V'])
 
-    # with voltage modulation
-    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.0/3c_A_vs=[50.0, 50.0, 50.0]'
-    params['system']['A_vs'] = [50.0, 50.0, 50.0]
+    # with mechanical frequency modulation
+    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.1/3a_theta=0.5'
+    params['system']['theta'] = 0.5
     looper_1 = run_loopers_in_parallel(
         looper_name='XLooper',
         func=func,

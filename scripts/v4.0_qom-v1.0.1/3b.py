@@ -113,7 +113,7 @@ def func(system_params):
 
 if __name__ == '__main__':
     # without voltage 
-    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.0/3b_A_vs=[50.0, 0.0, 0.0]'
+    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.1/3b_A_vs=[50.0, 0.0, 0.0]'
     params['system']['A_vs'] = [50.0, 0.0, 0.0]
     looper_0 = run_loopers_in_parallel(
         looper_name='XLooper',
@@ -125,7 +125,7 @@ if __name__ == '__main__':
     Sq_0, En_0 = np.transpose(looper_0.results['V'])
 
     # with voltage modulation
-    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.0/3b_A_vs=[50.0, 50.0, 50.0]'
+    params['looper']['file_path_prefix'] = 'data/v4.0_qom-v1.0.1/3b_A_vs=[50.0, 50.0, 50.0]'
     params['system']['A_vs'] = [50.0, 50.0, 50.0]
     looper_1 = run_loopers_in_parallel(
         looper_name='XLooper',
