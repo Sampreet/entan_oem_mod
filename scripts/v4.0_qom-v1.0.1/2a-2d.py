@@ -17,53 +17,53 @@ from systems.OptoElectroMechanical import OEM_20
 # all parameters
 params = {
     'solver': {
-        'show_progress': True,
-        'cache': False,
-        'measure_codes': ['entan_ln'],
-        'indices': (0, 2),
-        'ode_method': 'vode',
-        't_min': 0.0,
-        't_max': 1000.0,
-        't_dim': 10001,
-        't_index_min': 9371,
-        't_index_max': 10001
+        'show_progress' : True,
+        'cache'         : False,
+        'measure_codes' : ['entan_ln'],
+        'indices'       : (0, 2),
+        'ode_method'    : 'vode',
+        't_min'         : 0.0,
+        't_max'         : 1000.0,
+        't_dim'         : 10001,
+        't_index_min'   : 9371,
+        't_index_max'   : 10001
     },
     'system': {
-        'A_ls': [100.0, 10.0, 10.0],
-        'A_vs': [50.0, 50.0, 50.0],
-        'Delta_0': 1.0,
-        'gammas': [0.1, 1e-6, 1e-2],
-        'gs': [1e-3, 2e-4],
-        'n_ths': [0.0, 0.0],
-        'Omegas': [2.0, 2.0, 2.0],
-        'omega_c0': 1.1,
-        'theta': 0.5,
-        't_mod': 'cos',
-        't_pos': 'top'
+        'A_ls'      : [100.0, 10.0, 10.0],
+        'A_vs'      : [50.0, 50.0, 50.0],
+        'Delta_0'   : 1.0,
+        'gammas'    : [0.1, 1e-6, 1e-2],
+        'gs'        : [1e-3, 2e-4],
+        'n_ths'     : [0.0, 0.0],
+        'Omegas'    : [2.0, 2.0, 2.0],
+        'omega_c0'  : 1.1,
+        'theta'     : 0.5,
+        't_mod'     : 'cos',
+        't_pos'     : 'top'
     },
     'plotter': {
-        'type': 'line',
-        'colors': ['k', 'r', 'b'],
-        'sizes': [1, 2, 2],
-        'x_label': '$\\omega_{b0} t$',
-        'x_ticks': [990, 995, 1000],
-        'x_ticks_minor': [990 + i for i in range(11)],
-        'v_label_color': 'r',
-        'v_limits': [0.35, 0.9],
-        'v_tick_color': 'r',
-        'v_tick_position': 'left-in',
-        'v_ticks': [0.4, 0.6, 0.8],
-        'v_ticks_minor': [0.35 + i * 0.05 for i in range(13)],
-        'v_twin_label_color': 'b',
-        'v_twin_limits': [0.015, 0.18],
-        'v_twin_tick_color': 'b',
-        'v_twin_tick_position': 'right-in',
-        'v_twin_ticks': [0.03, 0.09, 0.15],
-        'v_twin_ticks_minor': [0.015 + i * 0.015 for i in range(13)],
-        'label_font_size': 32,
-        'tick_font_size': 28,
-        'width': 4.6,
-        'height': 4.0
+        'type'                  : 'lines',
+        'colors'                : ['k', 'r', 'b'],
+        'sizes'                 : [1, 2, 2],
+        'x_label'               : '$\\omega_{b0} t$',
+        'x_ticks'               : [990, 995, 1000],
+        'x_ticks_minor'         : [990 + i for i in range(11)],
+        'v_label_color'         : 'r',
+        'v_limits'              : [0.35, 0.9],
+        'v_tick_color'          : 'r',
+        'v_tick_position'       : 'left-in',
+        'v_ticks'               : [0.4, 0.6, 0.8],
+        'v_ticks_minor'         : [0.35 + i * 0.05 for i in range(13)],
+        'v_twin_label_color'    : 'b',
+        'v_twin_limits'         : [0.015, 0.18],
+        'v_twin_tick_color'     : 'b',
+        'v_twin_tick_position'  : 'right-in',
+        'v_twin_ticks'          : [0.03, 0.09, 0.15],
+        'v_twin_ticks_minor'    : [0.015 + i * 0.015 for i in range(13)],
+        'label_font_size'       : 32,
+        'tick_font_size'        : 28,
+        'width'                 : 4.6,
+        'height'                : 4.0
     }
 }
 
@@ -158,5 +158,3 @@ for j in range(4):
     )
     # show
     plotter.show()
-    # close
-    plotter.close()

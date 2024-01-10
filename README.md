@@ -2,14 +2,25 @@
 
 [![Manuscript Version](https://img.shields.io/badge/manuscript-4.0-red?style=for-the-badge)](https://doi.org/10.1103/PhysRevA.106.043501)
 [![Toolbox Version](https://img.shields.io/badge/qom-v1.0.1-red?style=for-the-badge)](https://sampreet.github.io/qom-docs/v1.0.1)
+[![Last Updated](https://img.shields.io/github/last-commit/sampreet/entan_oem_mod?style=for-the-badge)](https://github.com/sampreet/entan_oem_mod/blob/master/CHANGELOG.md)
 
-> A collection of all data and scripts for the work.
+> Phys. Rev. A 106, 043501 (2022)
 
 Author | Affiliation
 ------------ | -------------
 [Sampreet Kalita](https://www.iitg.ac.in/stud/sampreet/) | Department of Physics, Indian Institute of Technology Guwahati, Assam 781039, India
 [Saumya Shah Amit](https://www.iitg.ac.in/stud/shah18/) | Department of Physics, Indian Institute of Technology Guwahati, Assam 781039, India
 [Amarendra Kumar Sarma](https://www.iitg.ac.in/aksarma/) | Department of Physics, Indian Institute of Technology Guwahati, Assam 781039, India
+
+Contributing Part | SK | SSA
+------------ | ------------ | -------------
+Literature review | 60% | 40%
+Idea and formulation | 80% | 20%
+Derivations of expressions | 70% | 30%
+Parameter sweeping | 30% | 70%
+Illustrations and plots | 60% | 40%
+Results and discussion | 70% | 30%
+Manuscript preparation | 80% | 20%
 
 ## About the Work
 

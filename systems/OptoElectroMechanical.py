@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
  
-"""Class to simulate Opto-electro-mechanical systems."""
+"""Class to simulate opto-electro-mechanical systems."""
 
 __authors__ = ["Sampreet Kalita"]
 __toolbox__ = 'qom-v1.0.1'
 __created__ = "2021-06-14"
-__updated__ = "2023-10-10"
+__updated__ = "2024-01-10"
 
 # dependencies
 import numpy as np
@@ -40,180 +40,19 @@ class OEM_20(BaseSystem):
         Callback function to update status and progress, formatted as ``cb_update(status, progress, reset)``, where ``status`` is a string, ``progress`` is a float and ``reset`` is a boolean.
     """
 
-    # default looping parameters
-    looper_defaults = {
-        'A_l0': {
-            'var': 'A_ls',
-            'idx': 0,
-            'min': 75.0,
-            'max': 125.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'A_lm': {
-            'var': 'A_ls',
-            'idx': 1,
-            'min': 0.0,
-            'max': 10.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'A_lp': {
-            'var': 'A_ls',
-            'idx': 2,
-            'min': 0.0,
-            'max': 10.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'A_v0': {
-            'var': 'A_vs',
-            'idx': 0,
-            'min': -150.0,
-            'max': 150.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'A_vm': {
-            'var': 'A_vs',
-            'idx': 1,
-            'min': 0.0,
-            'max': 50.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'A_vp': {
-            'var': 'A_vs',
-            'idx': 2,
-            'min': 0.0,
-            'max': 50.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'Delta_0': {
-            'var': 'Delta_0',
-            'min': -2.0,
-            'max': 2.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'gamma_a': {
-            'var': 'gammas',
-            'idx': 0,
-            'min': 1e-2,
-            'max': 1e0,
-            'dim': 1001,
-            'scale': 'log'
-        },
-        'gamma_b': {
-            'var': 'gammas',
-            'idx': 1,
-            'min': 1e-7,
-            'max': 1e-5,
-            'dim': 1001,
-            'scale': 'log'
-        },
-        'gamma_c': {
-            'var': 'gammas',
-            'idx': 2,
-            'min': 1e-3,
-            'max': 1e-1,
-            'dim': 1001,
-            'scale': 'log'
-        },
-        'g_ab': {
-            'var': 'gs',
-            'idx': 0,
-            'min': 1e-5,
-            'max': 1e-1,
-            'dim': 1001,
-            'scale': 'log'
-        },
-        'g_bc': {
-            'var': 'gs',
-            'idx': 1,
-            'min': 1e-5,
-            'max': 1e-3,
-            'dim': 1001,
-            'scale': 'log'
-        },
-        'n_th_b': {
-            'var': 'n_th',
-            'idx': 0,
-            'min': 1e-2,
-            'max': 1e4,
-            'dim': 201,
-            'scale': 'log' 
-        },
-        'n_th_c': {
-            'var': 'n_th',
-            'idx': 1,
-            'min': 1e-4,
-            'max': 1e2,
-            'dim': 201,
-            'scale': 'log' 
-        },
-        'Omega_l': {
-            'var': 'Omegas',
-            'idx': 0,
-            'min': 1.0,
-            'max': 3.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'Omega_v': {
-            'var': 'Omegas',
-            'idx': 1,
-            'min': 1.0,
-            'max': 3.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'Omega_s': {
-            'var': 'Omegas',
-            'idx': 2,
-            'min': 1.0,
-            'max': 3.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'omega_c0': {
-            'var': 'omega_c0',
-            'min': 0.5,
-            'max': 1.5,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        'theta': {
-            'var': 'theta',
-            'min': 0.0,
-            'max': 1.0,
-            'dim': 1001,
-            'scale': 'linear'
-        },
-        't_mod': {
-            'var': 't_mod',
-            'val': ['cos', 'sin']
-        },
-        't_pos': {
-            'var': 't_pos',
-            'val': ['top', 'bottom']
-        }
-    }
-
     # default system parameters
     system_defaults = {
-        'A_ls': [100.0, 10.0, 10.0],
-        'A_vs': [50.0, 50.0, 50.0],
-        'Delta_0': 1.0,
-        'gammas': [0.1, 1e-6, 1e-2],
-        'gs': [1e-3, 2e-4],
-        'n_ths': [0.0, 0.0],
-        'Omegas': [2.0, 2.0, 2.0],
-        'omega_c0': 1.1,
-        'theta': 0.5,
-        't_mod': 'cos',
-        't_pos': 'top'
+        'A_ls'      : [100.0, 10.0, 10.0],
+        'A_vs'      : [50.0, 50.0, 50.0],
+        'Delta_0'   : 1.0,
+        'gammas'    : [0.1, 1e-6, 1e-2],
+        'gs'        : [1e-3, 2e-4],
+        'n_ths'     : [0.0, 0.0],
+        'Omegas'    : [2.0, 2.0, 2.0],
+        'omega_c0'  : 1.1,
+        'theta'     : 0.5,
+        't_mod'     : 'cos',
+        't_pos'     : 'top'
     }
 
     def __init__(self, params, cb_update=None):
