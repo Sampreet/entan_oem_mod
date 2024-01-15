@@ -59,6 +59,8 @@ The observation of maximum squeezing and maximum entanglement windows for the sy
 
 ## Notebooks
 
+* [Multistability of the OptoElectroMechanical System with multiple modulations (OEM_20)](notebooks/oem_20_multistability.ipynb)
+* [Dynamical Stability of the OptoElectroMechanical System with multiple modulations (OEM_20)](notebooks/oem_20_dynamical_stability.ipynb)
 * [Plots in the Latest Version of the Manuscript](notebooks/v4.0_qom-v1.0.1/plots.ipynb)
 
 ## Structure of the Repository
@@ -96,7 +98,7 @@ ROOT_DIR/
 └───README.md
 ```
 
-Here, `foo` represents the module or system and `bar` represents the version.
+Here, `foo` represents the module or class and `bar` represents the version.
 
 ## Installing Dependencies
 
